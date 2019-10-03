@@ -1,0 +1,24 @@
+//== Common
+//
+
+$custom-font-path:       "../fonts/";
+
+
+//== Grid
+//
+
+$screen-xs-min:           map-get($grid-breakpoints, "sm");
+$screen-xxs-max:          ($screen-xs-min - 1);
+
+
+//== Forms
+//
+
+$textarea-min-height:    100px;
+
+
+//== Gallery
+//
+
+$gallery-img-border:								$primary;
+$gallery-img-border-hover:					darken($primary, 20%);

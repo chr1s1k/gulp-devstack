@@ -1,0 +1,47 @@
+{
+	"name": "gulp-devstack",
+	"version": "1.0.0",
+	"author": {
+		"name": "Radek Sukup",
+		"url": "https://radeksukup.com"
+	},
+	"license": "MIT",
+	"private": true,
+	"devDependencies": {
+		"@babel/core": "^7.6.2",
+		"@babel/preset-env": "^7.6.2",
+		"@babel/register": "^7.6.2",
+		"ansi-colors": "^4.1.1",
+		"babel-eslint": "^10.0.3",
+		"babelify": "^10.0.0",
+		"beeper": "^2.0.0",
+		"blueimp-gallery": "^2.35.0",
+		"bootstrap": "^4.3.1",
+		"browser-sync": "^2.26.7",
+		"browserify": "^16.5.0",
+		"del": "^5.1.0",
+		"eslint": "^6.5.1",
+		"fancy-log": "^1.3.3",
+		"gulp": "^4.0.2",
+		"gulp-compile-handlebars": "^0.6.1",
+		"gulp-concat": "^2.6.1",
+		"gulp-eslint": "^6.0.0",
+		"gulp-if": "^3.0.0",
+		"gulp-imagemin": "^6.1.0",
+		"gulp-include": "^2.4.1",
+		"gulp-plumber": "^1.2.1",
+		"gulp-prettify": "^0.5.0",
+		"gulp-rename": "^1.4.0",
+		"gulp-sass": "^4.0.2",
+		"gulp-svg-sprite": "^1.5.0",
+		"gulp-uglify": "^3.0.2",
+		"gulp-w3cjs": "^1.3.2",
+		"gulp-webserver": "^0.9.1",
+		"prettier": "^1.18.2",
+		"vinyl-buffer": "^1.0.1",
+		"vinyl-source-stream": "^2.0.0"
+	},
+	"dependencies": {
+		"core-js": "3.2.1"
+	}
+}

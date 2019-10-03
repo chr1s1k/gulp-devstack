@@ -1,0 +1,9 @@
+@media print {
+	@page {
+		margin: 0.5cm;
+	}
+
+	form {
+		display: none;
+	}
+}

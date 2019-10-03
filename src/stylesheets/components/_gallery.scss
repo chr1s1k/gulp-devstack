@@ -1,0 +1,53 @@
+.gallery {
+	img {
+		display: block;
+		border: 2px solid $gallery-img-border;
+		margin: 0;
+		&:hover {
+			border-color: $gallery-img-border-hover;
+		}
+	}
+	a {
+		padding-top: 15px;
+		padding-bottom: 15px;
+		text-decoration: none;
+		&:active,
+		&:focus {
+			img {
+				border-color: $gallery-img-border-hover;
+			}
+		}
+	}
+}
+
+.blueimp-gallery {
+	> .close,
+	> .next,
+	> .prev {
+		display: block;
+		color: #e9effa;
+		opacity: 0.7;
+		&:active,
+		&:focus,
+		&:hover {
+			opacity: 1;
+		}
+	}
+	> .next,
+	> .prev {
+		font-size: 30px;
+		border: 0;
+		background: none;
+	}
+	> .prev {
+		left: 15px;
+	}
+	> .next {
+		right: 15px;
+	}
+	> .title {
+		display: block;
+		color: #fff;
+		opacity: 1;
+	}
+}

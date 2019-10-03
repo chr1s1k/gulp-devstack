@@ -1,0 +1,22 @@
+@mixin font-face($name, $file, $weight, $style, $path: $custom-font-path) {
+ @font-face {
+	 font-family: "#{$name}";
+	 src: url('#{$path}#{$file}.woff') format('woff');
+	 font-weight: $weight;
+	 font-style: $style;
+	 font-display: swap;
+ }
+}
+
+@mixin ir() {
+	display: inline-block;
+	background-color: transparent;
+	border: 0;
+	overflow: hidden;
+	&:before {
+		content: "";
+		display: block;
+		width: 0;
+		height: 150%;
+	}
+}

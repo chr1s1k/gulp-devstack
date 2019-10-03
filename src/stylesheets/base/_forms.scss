@@ -1,0 +1,20 @@
+label {
+	font-weight: normal;
+}
+
+textarea {
+	resize: vertical;
+	min-height: $textarea-min-height;
+}
+
+select,
+option {
+	cursor: pointer;
+}
+
+.form-control {
+	-webkit-appearance: none; // disable shadows on iOS
+	&[readonly] {
+		cursor: text;
+	}
+}
