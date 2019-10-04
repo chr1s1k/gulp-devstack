@@ -125,9 +125,14 @@ function svg() {
 }
 
 function lint() {
-	return gulp.src(['./src/scripts/**/*.js', '!./src/scripts/vendors/**/*'])
+	return gulp.src(['./src/scripts/**/*.js', '!./src/scripts/vendor/**/*'])
 		.pipe(eslint())
 		.pipe(eslint.format())
+		.pipe(eslint.result(result => {
+			if (result.errorCount) {
+				beeper() // if at least one eslint error has found => just beep the terminal
+			}
+		}))
 		.pipe(eslint.failAfterError())
 }
 
@@ -137,8 +142,8 @@ function validateTemplates() {
 		.pipe(w3cjs.reporter())
 }
 
-function vendorsjs() {
-	return gulp.src('./src/scripts/vendors/index.js')
+function vendorjs() {
+	return gulp.src('./src/scripts/vendor/index.js')
 		.pipe(plumber({
 			errorHandler
 		}))
@@ -148,7 +153,7 @@ function vendorsjs() {
 			]
 		}))
 		.pipe(rename(path => {
-			path.basename = 'vendors'
+			path.basename = 'vendor'
 		}))
 		.pipe(gulpif(isProduction, uglify()))
 		.pipe(gulp.dest('./dist/js'))
@@ -165,7 +170,7 @@ function concatjs() {
 
 function cleanjs() {
 	// after all vendor scripts were concatened into main JS file, just delete it
-	let filesToDelete = ['./dist/js/vendors.js']
+	let filesToDelete = ['./dist/js/vendor.js']
 
 	// if we are in production mode => delete the main transpiled filed and leave only minified version
 	if (isProduction) {
@@ -196,7 +201,7 @@ function serve() {
 
 const defaultTask = parallel(staticServer, serve, watch)
 
-const scripts = series(lint, vendorsjs, transpilejs, concatjs, cleanjs)
+const scripts = series(lint, vendorjs, transpilejs, concatjs, cleanjs)
 
 const build = series(
 	setProductionMode,

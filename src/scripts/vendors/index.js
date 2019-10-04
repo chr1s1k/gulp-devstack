@@ -1,1 +1,0 @@
-//= require blueimp-gallery/js/blueimp-gallery.js

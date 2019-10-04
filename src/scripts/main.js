@@ -1,9 +1,12 @@
-import Timer from './components/Timer'
+import { init } from './init'
+// import { initMultiple } from './init'
 
-const arr = [1, 2, 3]
+import Document from './components/Document'
 
-const number = arr.find(number => number >= 3)
+const app = {
+	run() {
+		init(Document, document.documentElement)
+	}
+}
 
-console.log(number)
-
-Timer()
+app.run()
