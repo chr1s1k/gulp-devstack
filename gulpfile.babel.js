@@ -45,11 +45,13 @@ function clean() {
 
 function templates() {
 	return gulp.src('./src/templates/*.hbs')
-		.pipe(handlebars({}, {
+		.pipe(handlebars({
+			isProduction // pass the variable to be available inside .hbs templates
+		}, {
 			ignorePartials: true,
 			batch: ['./src/templates/partials'] // where to locate partial templates
 		}))
-		.pipe(rename((path) => {
+		.pipe(rename(path => {
 			path.extname = '.html'
 		}))
 		.pipe(gulpif(isProduction, prettify({
@@ -74,13 +76,16 @@ function styles() {
 			includePaths: ['./node_modules/']
 		})
 			.on('error', sass.logError))
+		.pipe(gulpif(isProduction, rename(path => {
+			path.extname = '.min.css'
+		})))
 		.pipe(gulp.dest('./dist/css', { sourcemaps: '.' })) // write an external sourcemaps
 		.pipe(server.stream())
 }
 
 // https://thecodeboss.dev/2016/01/building-es6-javascript-for-the-browser-with-gulp-babel-and-more/
 // https://www.sitepoint.com/transpiling-es6-modules-to-amd-commonjs-using-babel-gulp/
-function scripts() {
+function transpilejs() {
 	return browserify({
 		entries: './src/scripts/main.js',
 		debug: false,
@@ -89,6 +94,7 @@ function scripts() {
 		.bundle()
 		.pipe(source('main.js'))
 		.pipe(buffer())
+		.pipe(gulpif(isProduction, uglify()))
 		.pipe(gulp.dest('./dist/js'))
 		.pipe(server.stream({ stream: true }))
 }
@@ -141,24 +147,38 @@ function vendorsjs() {
 				'./node_modules'
 			]
 		}))
+		.pipe(rename(path => {
+			path.basename = 'vendors'
+		}))
+		.pipe(gulpif(isProduction, uglify()))
 		.pipe(gulp.dest('./dist/js'))
 }
 
 function concatjs() {
 	return gulp.src('./dist/js/*.js')
 		.pipe(concat('main.js'))
-		.pipe(gulpif(isProduction, uglify()))
+		.pipe(gulpif(isProduction, rename(path => {
+			path.extname = '.min.js'
+		})))
 		.pipe(gulp.dest('./dist/js/'))
 }
 
 function cleanjs() {
-	return del('./dist/js/index.js')
+	// after all vendor scripts were concatened into main JS file, just delete it
+	let filesToDelete = ['./dist/js/vendors.js']
+
+	// if we are in production mode => delete the main transpiled filed and leave only minified version
+	if (isProduction) {
+		filesToDelete = isProduction ? [...filesToDelete, './dist/js/main.js'] : filesToDelete
+	}
+
+	return del(filesToDelete)
 }
 
 function watch() {
 	watchFor('./src/stylesheets/**/*.scss', styles)
 	watchFor('./src/templates/**/*.hbs', templates)
-	watchFor('./src/scripts/**/*.js', series(lint, vendorsjs, scripts, concatjs, cleanjs))
+	watchFor('./src/scripts/**/*.js', scripts)
 	watchFor('./src/images/**/*', images)
 	watchFor('./src/fonts/**/*', fonts)
 }
@@ -175,6 +195,9 @@ function serve() {
 }
 
 const defaultTask = parallel(staticServer, serve, watch)
+
+const scripts = series(lint, vendorsjs, transpilejs, concatjs, cleanjs)
+
 const build = series(
 	setProductionMode,
 	clean,
@@ -188,7 +211,7 @@ exports.clean = clean
 exports.styles = styles
 exports.images = images
 exports.fonts = fonts
-exports.scripts = series(lint, vendorsjs, scripts, concatjs, cleanjs)
+exports.scripts = scripts
 exports.svg = svg
 exports.eslint = lint
 exports.build = build
