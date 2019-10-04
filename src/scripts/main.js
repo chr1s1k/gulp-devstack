@@ -1,12 +1,12 @@
 import { init, initMultiple } from './init'
 
 import Document from './components/Document'
-import Collapse from './components/Collapse'
+import Clickable from './components/Clickable'
 
 const app = {
 	run() {
 		init(Document, document.documentElement)
-		initMultiple(Collapse, document.querySelectorAll('[data-toggle="collapse"]'))
+		initMultiple(Clickable, document.querySelectorAll('.js-clickable'))
 	}
 }
 
