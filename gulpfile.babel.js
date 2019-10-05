@@ -10,7 +10,6 @@ import uglify from 'gulp-uglify'
 import include from 'gulp-include'
 import del from 'del'
 import browserify from 'browserify'
-import babelify from 'babelify'
 import source from 'vinyl-source-stream'
 import buffer from 'vinyl-buffer'
 import handlebars from 'gulp-compile-handlebars'
@@ -21,7 +20,7 @@ import eslint from 'gulp-eslint'
 import gulpif from 'gulp-if'
 import prettify from 'gulp-prettify'
 import w3cjs from 'gulp-w3cjs'
-import concat from 'gulp-concat'
+import tsify from 'tsify'
 
 const errorHandler = (err) => {
 	beeper() // terminal beep
@@ -85,20 +84,26 @@ function styles() {
 
 // https://thecodeboss.dev/2016/01/building-es6-javascript-for-the-browser-with-gulp-babel-and-more/
 // https://www.sitepoint.com/transpiling-es6-modules-to-amd-commonjs-using-babel-gulp/
-function transpilejs() {
+function bundlejs() {
 	return browserify({
-		entries: './src/scripts/main.js',
-		debug: false,
-		transform: babelify
+		entries: './src/scripts/main.ts',
+		debug: !isProduction,
 	})
+		.plugin(tsify)
+		.transform('babelify', {
+			presets: ['@babel/preset-env'],
+			extensions: ['.ts', '.js']
+		})
 		.bundle()
 		.pipe(source('main.js'))
 		.pipe(buffer())
 		.pipe(gulpif(isProduction, uglify()))
+		.pipe(gulpif(isProduction, rename(path => {
+			path.extname = '.min.js'
+		})))
 		.pipe(gulp.dest('./dist/js'))
 		.pipe(server.stream({ stream: true }))
 }
-
 
 function images() {
 	return gulp.src(['./src/images/**/*', '!./src/images/sprite/**'])
@@ -125,7 +130,7 @@ function svg() {
 }
 
 function lint() {
-	return gulp.src(['./src/scripts/**/*.js', '!./src/scripts/vendor/**/*'])
+	return gulp.src(['./src/scripts/**/*.ts', '!./src/scripts/vendor/**/*'])
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.result(result => {
@@ -156,34 +161,16 @@ function vendorjs() {
 			path.basename = 'vendor'
 		}))
 		.pipe(gulpif(isProduction, uglify()))
-		.pipe(gulp.dest('./dist/js'))
-}
-
-function concatjs() {
-	return gulp.src('./dist/js/*.js')
-		.pipe(concat('main.js'))
 		.pipe(gulpif(isProduction, rename(path => {
 			path.extname = '.min.js'
 		})))
-		.pipe(gulp.dest('./dist/js/'))
-}
-
-function cleanjs() {
-	// after all vendor scripts were concatened into main JS file, just delete it
-	let filesToDelete = ['./dist/js/vendor.js']
-
-	// if we are in production mode => delete the main transpiled filed and leave only minified version
-	if (isProduction) {
-		filesToDelete = isProduction ? [...filesToDelete, './dist/js/main.js'] : filesToDelete
-	}
-
-	return del(filesToDelete)
+		.pipe(gulp.dest('./dist/js'))
 }
 
 function watch() {
 	watchFor('./src/stylesheets/**/*.scss', styles)
 	watchFor('./src/templates/**/*.hbs', templates)
-	watchFor('./src/scripts/**/*.js', scripts)
+	watchFor(['./src/scripts/**/*.ts', './src/scripts/vendor/*.js'], scripts)
 	watchFor('./src/images/**/*', images)
 	watchFor('./src/fonts/**/*', fonts)
 }
@@ -201,7 +188,7 @@ function serve() {
 
 const defaultTask = parallel(staticServer, serve, watch)
 
-const scripts = series(lint, vendorjs, transpilejs, concatjs, cleanjs)
+const scripts = series(lint, vendorjs, bundlejs)
 
 const build = series(
 	setProductionMode,
@@ -221,6 +208,7 @@ exports.svg = svg
 exports.eslint = lint
 exports.build = build
 exports.validateTemplates = validateTemplates
+exports.bundlejs = bundlejs
 
 exports.init = series(
 	clean,

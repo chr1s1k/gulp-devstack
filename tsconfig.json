@@ -1,0 +1,29 @@
+{
+	"files": [
+		"src/scripts/main.ts"
+	],
+	"compilerOptions": {
+		"target": "es6",
+		"lib": [
+			"es5",
+			"esnext",
+			"dom"
+		],
+		"noImplicitAny": true,
+		"allowJs": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true
+	},
+	"exclude": [
+		"node_modules/",
+		"src/scripts/vendor/**/*"
+	]
+}
