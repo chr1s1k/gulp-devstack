@@ -8,6 +8,7 @@
 - [Typescript](http://www.typescriptlang.org/) 3.x
 - [SVG sprite](https://github.com/jkphl/gulp-svg-sprite)
 - [ESLint](https://eslint.org/)
+- [blueimp Gallery](https://github.com/blueimp/Gallery)
 - Local [webserver](https://github.com/schickling/gulp-webserver) with [Browsersync](https://browsersync.io) support
 
 ## Setup
