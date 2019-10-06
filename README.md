@@ -3,7 +3,8 @@
 ## Features
 
 - [Bootstrap](https://getbootstrap.com/) 4.x
-- [jQuery](https://jquery.com/) (I know, it's old school, but I'm waiting for Bootstrap v5.)
+- [jQuery](https://jquery.com/) (you don't have to use it)
+- [Sass](https://sass-lang.com/)
 - [Handlebars](https://handlebarsjs.com/)
 - [Typescript](http://www.typescriptlang.org/) 3.x
 - [SVG sprite](https://github.com/jkphl/gulp-svg-sprite)
