@@ -58,6 +58,7 @@ function templates() {
 			indent_inner_html: true,
 			indent_char: ' ',
 			indent_size: 2,
+			unformatted: ['script', 'style']
 		})))
 		.pipe(gulp.dest('./dist'))
 		.pipe(server.stream({ reload: true }))
