@@ -50,4 +50,50 @@
 		color: #fff;
 		opacity: 1;
 	}
+
+	> .slides {
+		> .slide-loading {
+			background: none;
+
+			&:before {
+				$size: 3em;
+
+				content: '';
+				display: block;
+				position: absolute;
+				top: calc(50% - #{$size / 2});
+				left: calc(50% - #{$size / 2});
+				border: 3px solid rgba($primary, 0.3);
+				border-top-color: $secondary;
+				border-radius: 50%;
+				width: $size;
+				height: $size;
+				animation: spin 1s linear infinite;
+			}
+		}
+	}
+
+	&.blueimp-gallery-left {
+		.prev {
+			display: none;
+		}
+	}
+
+	&.blueimp-gallery-right {
+		.next {
+			display: none;
+		}
+	}
+}
+
+@-webkit-keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
 }

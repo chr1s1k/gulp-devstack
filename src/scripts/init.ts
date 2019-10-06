@@ -1,6 +1,4 @@
-import 'core-js/modules/es.array.from'
-
-export function init(fn: Function, element: HTMLElement, ...args: any) {
+export function init(fn: Function, element: HTMLElement | null, ...args: any) {
 	if (element) {
 		fn(element, ...args)
 	}

@@ -1,4 +1,4 @@
-export default function(element: HTMLElement) {
-	element.classList.remove('no-js')
-	element.classList.add('js')
+export default function(rootEl: HTMLElement) {
+	rootEl.classList.remove('no-js')
+	rootEl.classList.add('js')
 }

@@ -1,12 +1,12 @@
-export default function(element: HTMLElement) {
+export default function(container: HTMLElement) {
 
 	const classesName = {
 		JS_HOVER: 'js-hover'
 	}
 
-	element.addEventListener('click', () => {
-		const link = element.querySelector('a')
-		
+	container.addEventListener('click', () => {
+		const link = container.querySelector('a')
+
 		if (link) {
 			const linkUrl: string = link.getAttribute('href') || ''
 			let newWindowOpened = true
@@ -25,12 +25,12 @@ export default function(element: HTMLElement) {
 		}
 	})
 
-	element.addEventListener('mouseenter', () => {
-		element.classList.add(classesName.JS_HOVER)
+	container.addEventListener('mouseenter', () => {
+		container.classList.add(classesName.JS_HOVER)
 	})
 
-	element.addEventListener('mouseleave', () => {
-		element.classList.remove(classesName.JS_HOVER)
+	container.addEventListener('mouseleave', () => {
+		container.classList.remove(classesName.JS_HOVER)
 	})
 
 }

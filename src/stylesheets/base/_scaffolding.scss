@@ -28,5 +28,8 @@ a {
 iframe,
 video {
 	max-width: 100%;
-	height: auto;
+}
+
+iframe {
+	border: 0;
 }
