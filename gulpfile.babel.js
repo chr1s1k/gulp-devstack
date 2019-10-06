@@ -172,6 +172,7 @@ function watch() {
 	watchFor('./src/templates/**/*.hbs', templates)
 	watchFor(['./src/scripts/**/*.ts', './src/scripts/vendor/*.js'], scripts)
 	watchFor('./src/images/**/*', images)
+	watchFor('./src/images/sprite/**/*', svg)
 	watchFor('./src/fonts/**/*', fonts)
 }
 
