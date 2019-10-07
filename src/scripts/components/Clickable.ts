@@ -1,4 +1,4 @@
-export default function(container: HTMLElement) {
+export default function Clickable(container: HTMLElement) {
 
 	const classesName = {
 		JS_HOVER: 'js-hover'

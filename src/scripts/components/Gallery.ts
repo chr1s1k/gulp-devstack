@@ -1,4 +1,4 @@
-export default function(container: HTMLElement) {
+export default function Gallery(container: HTMLElement) {
 	if (window.blueimp) {
 
 		// https://github.com/blueimp/Gallery/blob/master/README.md#setup
