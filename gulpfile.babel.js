@@ -48,7 +48,12 @@ function templates() {
 			isProduction // pass the variable to be available inside .hbs templates
 		}, {
 			ignorePartials: true,
-			batch: ['./src/templates/partials'] // where to locate partial templates
+			batch: ['./src/templates/partials'], // where to locate partial templates
+			helpers: {
+				parse: (options) => {
+					return options.fn(JSON.parse(options.hash.json))
+				}
+			}
 		}))
 		.pipe(rename(path => {
 			path.extname = '.html'
