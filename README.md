@@ -10,7 +10,7 @@
 - [SVG sprite](https://github.com/jkphl/gulp-svg-sprite)
 - [ESLint](https://eslint.org/)
 - [blueimp Gallery](https://github.com/blueimp/Gallery)
--	[Lazyloading](https://github.com/VelociraptorCZE/MiniLazyload) of images and iframes
+- [Lazyloading](https://github.com/VelociraptorCZE/MiniLazyload) of images and iframes
 - Local [webserver](https://github.com/schickling/gulp-webserver) with [Browsersync](https://browsersync.io) support
 
 ## Setup
