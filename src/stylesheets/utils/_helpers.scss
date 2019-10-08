@@ -5,3 +5,12 @@
 		text-decoration: underline;
 	}
 }
+
+.js-lazyload {
+	opacity: 0;
+	@include transition(opacity);
+
+	&.loaded {
+		opacity: 1;
+	}
+}

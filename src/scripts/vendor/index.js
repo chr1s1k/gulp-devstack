@@ -13,6 +13,8 @@
 //= require bootstrap/js/dist/scrollspy.js
 //= require bootstrap/js/dist/tab.js
 
+//= require minilazyload/dist/minilazyload.min.js
+
 //= require blueimp-gallery/js/blueimp-helper.js
 //= require blueimp-gallery/js/blueimp-gallery.js
 //= require blueimp-gallery/js/blueimp-gallery-fullscreen.js
