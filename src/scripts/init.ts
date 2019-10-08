@@ -4,7 +4,7 @@ export function init(fn: Function, element: HTMLElement | null, ...args: any) {
 	}
 }
 
-export function initMultiple(fn: Function, listOfElements: NodeListOf<HTMLElement>, ...args: any) {
+export function initMultiple(fn: Function, listOfElements: NodeListOf<HTMLElement> | HTMLCollection, ...args: any) {
 	if (listOfElements.length) {
 		const elements = Array.from(listOfElements)
 
