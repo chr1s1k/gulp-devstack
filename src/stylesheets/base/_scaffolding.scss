@@ -22,7 +22,7 @@ body {
 }
 
 a {
-	transition: color 0.2s linear;
+	@include transition(color);
 }
 
 iframe,
