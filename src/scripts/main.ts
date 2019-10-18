@@ -1,18 +1,18 @@
 import 'core-js/modules/es.array.from'
 
 interface IBlueimp {
-	Gallery: (list: NodeList | HTMLCollection, options?: object) => void;
+	Gallery: (list: NodeList | HTMLCollection, options?: object) => void
 }
 
 interface IMiniLazyload {
-	(options?: object, selector?: string, ignoreNative?: boolean) : void,
+	(options?: object, selector?: string, ignoreNative?: boolean): void
 	IGNORE_NATIVE_LAZYLOAD: boolean
 }
 
 // extend window with custom objects
 declare global {
 	interface Window {
-		blueimp: IBlueimp,
+		blueimp: IBlueimp
 		MiniLazyload: IMiniLazyload
 	}
 }

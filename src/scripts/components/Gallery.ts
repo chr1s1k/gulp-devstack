@@ -1,10 +1,10 @@
-export default function Gallery(container: HTMLElement) {
+export default function Gallery(container: HTMLElement): void {
 	if (window.blueimp) {
 
 		// https://github.com/blueimp/Gallery/blob/master/README.md#setup
 		container.onclick = (event: MouseEvent) => {
 			event = event || window.event
-			const target = <HTMLImageElement>event.target || event.srcElement
+			const target = (event.target as HTMLImageElement) || event.srcElement
 
 			// <img> must be direct descendant of <a> element
 			// need adjustment in case of pseudo elements on <a>

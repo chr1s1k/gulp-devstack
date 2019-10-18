@@ -1,4 +1,4 @@
-export default function Lazyload(selector: string) {
+export default function Lazyload(selector: string): void {
 	if (window.MiniLazyload) {
 		window.MiniLazyload(
 			{
