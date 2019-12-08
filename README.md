@@ -38,3 +38,9 @@ To start development server with watch task run:
 To compile & minify all assets ready for production deployment run:
 
 ```gulp build```
+
+### Production package
+
+To create a ZIP package from compiled & minified assets run:
+
+```gulp zip``` or ```gulp package```
