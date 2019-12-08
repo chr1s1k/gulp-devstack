@@ -16,9 +16,7 @@ html {
 body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	.fonts-loaded & {
-		font-family: $font-family-brand;
-	}
+	font-family: $font-family-brand, sans-serif;
 }
 
 a {
