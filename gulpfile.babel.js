@@ -117,6 +117,25 @@ function images() {
 		.pipe(gulp.dest('./dist/images'))
 }
 
+function faviconImages() {
+	return gulp
+		.src([
+			'./src/images/favicon/*.png',
+			'./src/images/favicon/*.svg',
+			'./src/images/favicon/*.ico'
+		])
+		.pipe(gulp.dest('./dist/images'))
+}
+
+function faviconConfig() {
+	return gulp
+		.src([
+			'./src/images/favicon/*.xml',
+			'./src/images/favicon/*.webmanifest',
+		])
+		.pipe(gulp.dest('./dist'))
+}
+
 function fonts() {
 	return gulp.src('./src/fonts/**/*')
 		.pipe(gulp.dest('./dist/fonts'))
@@ -197,10 +216,12 @@ const defaultTask = parallel(staticServer, serve, watch)
 
 const scripts = series(lint, vendorjs, bundlejs)
 
+const favicons = parallel(faviconImages, faviconConfig)
+
 const build = series(
 	setProductionMode,
 	clean,
-	parallel(templates, styles, scripts, images, fonts, svg),
+	parallel(templates, styles, scripts, images, favicons, fonts, svg),
 	validateTemplates
 )
 
@@ -209,6 +230,7 @@ exports.templates = templates
 exports.clean = clean
 exports.styles = styles
 exports.images = images
+exports.favicons = favicons
 exports.fonts = fonts
 exports.scripts = scripts
 exports.svg = svg
@@ -219,6 +241,6 @@ exports.bundlejs = bundlejs
 
 exports.init = series(
 	clean,
-	parallel(templates, styles, scripts, images, fonts, svg),
+	parallel(templates, styles, scripts, images, favicons, fonts, svg),
 	defaultTask
 )
