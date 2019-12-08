@@ -1,3 +1,5 @@
+import packageJson from './package.json'
+
 import gulp, { series, parallel, watch as watchFor } from 'gulp'
 import webserver from 'gulp-webserver'
 import sass from 'gulp-sass'
@@ -21,12 +23,25 @@ import gulpif from 'gulp-if'
 import prettify from 'gulp-prettify'
 import w3cjs from 'gulp-w3cjs'
 import tsify from 'tsify'
+import zip from 'gulp-zip'
 
 const errorHandler = (err) => {
 	beeper() // terminal beep
 	fancylog(
 		colors.bold.red(err.message) // log a colored message
 	)
+}
+
+const getCurrentDate = () => {
+	const date = new Date()
+	const year = date.getUTCFullYear()
+	let day = date.getUTCDate()
+	let month = date.getMonth() + 1
+
+	day = day < 10 ? `0${day}` : day
+	month = month > 11 ? 12 : month
+
+	return `${year}-${month}-${day}`
 }
 
 const server = browserSync.create()
@@ -112,7 +127,12 @@ function bundlejs() {
 }
 
 function images() {
-	return gulp.src(['./src/images/**/*', '!./src/images/sprite/**'])
+	return gulp
+		.src([
+			'./src/images/**/*',
+			'!./src/images/sprite/**',
+			'!./src/images/favicon/**'
+		])
 		.pipe(imagemin())
 		.pipe(gulp.dest('./dist/images'))
 }
@@ -192,6 +212,16 @@ function vendorjs() {
 		.pipe(gulp.dest('./dist/js'))
 }
 
+function createZip() {
+	const currentDate = getCurrentDate()
+	const zipFileName = `${packageJson.name}-${currentDate}.zip`
+
+	return gulp
+		.src('./dist/**/*')
+		.pipe(zip(zipFileName))
+		.pipe(gulp.dest('./dist'))
+}
+
 function watch() {
 	watchFor('./src/stylesheets/**/*.scss', styles)
 	watchFor('./src/templates/**/*.hbs', templates)
@@ -238,6 +268,8 @@ exports.eslint = lint
 exports.build = build
 exports.validateTemplates = validateTemplates
 exports.bundlejs = bundlejs
+exports.package = createZip
+exports.zip = createZip
 
 exports.init = series(
 	clean,
