@@ -33,18 +33,6 @@ const errorHandler = (err) => {
 	)
 }
 
-const getCurrentDate = () => {
-	const date = new Date()
-	const year = date.getUTCFullYear()
-	let day = date.getUTCDate()
-	let month = date.getMonth() + 1
-
-	day = day < 10 ? `0${day}` : day
-	month = month > 11 ? 12 : month
-
-	return `${year}-${month}-${day}`
-}
-
 const server = browserSync.create()
 
 let isProduction = false
@@ -214,8 +202,7 @@ function vendorjs() {
 }
 
 function createZip() {
-	const currentDate = getCurrentDate()
-	const zipFileName = `${packageJson.name}-${currentDate}.zip`
+	const zipFileName = `${packageJson.name}-${packageJson.version}.zip`
 
 	return gulp
 		.src('./dist/**/*')
