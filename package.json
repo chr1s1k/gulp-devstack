@@ -1,6 +1,6 @@
 {
 	"name": "gulp-devstack",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"author": {
 		"name": "Radek Sukup",
 		"url": "https://radeksukup.com"
@@ -22,6 +22,7 @@
 		"eslint": "^6.7.2",
 		"fancy-log": "^1.3.3",
 		"gulp": "^4.0.2",
+		"gulp-bump": "^3.1.3",
 		"gulp-compile-handlebars": "^0.6.1",
 		"gulp-eslint": "^6.0.0",
 		"gulp-if": "^3.0.0",

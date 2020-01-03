@@ -24,6 +24,7 @@ import prettify from 'gulp-prettify'
 import w3cjs from 'gulp-w3cjs'
 import tsify from 'tsify'
 import zip from 'gulp-zip'
+import bump from 'gulp-bump'
 
 const errorHandler = (err) => {
 	beeper() // terminal beep
@@ -222,6 +223,13 @@ function createZip() {
 		.pipe(gulp.dest('./dist'))
 }
 
+function increasePackageVersion() {
+	return gulp
+		.src('./package.json')
+		.pipe(gulpif(isProduction, bump()))
+		.pipe(gulp.dest('./'))
+}
+
 function watch() {
 	watchFor('./src/stylesheets/**/*.scss', styles)
 	watchFor('./src/templates/**/*.hbs', templates)
@@ -252,6 +260,7 @@ const build = series(
 	setProductionMode,
 	clean,
 	parallel(templates, styles, scripts, images, favicons, fonts, svg),
+	increasePackageVersion,
 	validateTemplates
 )
 
