@@ -9,11 +9,11 @@
 	"license": "MIT",
 	"private": true,
 	"devDependencies": {
-		"@babel/core": "^7.7.4",
-		"@babel/preset-env": "^7.7.4",
-		"@babel/register": "^7.7.4",
-		"@typescript-eslint/eslint-plugin": "^2.8.0",
-		"@typescript-eslint/parser": "^2.8.0",
+		"@babel/core": "^7.7.7",
+		"@babel/preset-env": "^7.7.7",
+		"@babel/register": "^7.7.7",
+		"@typescript-eslint/eslint-plugin": "^2.15.0",
+		"@typescript-eslint/parser": "^2.15.0",
 		"ansi-colors": "^4.1.1",
 		"babelify": "^10.0.0",
 		"beeper": "^2.0.0",
@@ -47,9 +47,9 @@
 	"dependencies": {
 		"blueimp-gallery": "^2.36.0",
 		"bootstrap": "^4.4.1",
-		"core-js": "3.4.2",
+		"core-js": "3.6.3",
 		"jquery": "^3.4.1",
-		"minilazyload": "^2.3.3",
+		"minilazyload": "^2.3.4",
 		"popper.js": "^1.16.0",
 		"skrolltop": "^1.0.1"
 	}
