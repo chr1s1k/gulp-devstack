@@ -49,7 +49,8 @@ function clean() {
 function templates() {
 	return gulp.src('./src/templates/*.hbs')
 		.pipe(handlebars({
-			isProduction // pass the variable to be available inside .hbs templates
+			isProduction, // pass the variable to be available inside .hbs templates
+			appVersion: packageJson.version
 		}, {
 			ignorePartials: true,
 			batch: ['./src/templates/partials'], // where to locate partial templates

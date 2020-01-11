@@ -1,9 +1,10 @@
 {
 	"name": "gulp-devstack",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"author": {
 		"name": "Radek Sukup",
-		"url": "https://radeksukup.com"
+		"url": "https://radeksukup.com",
+		"email": "sukup.r@gmail.com"
 	},
 	"license": "MIT",
 	"private": true,
