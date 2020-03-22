@@ -3,7 +3,7 @@
 ## Features
 
 - [Bootstrap](https://getbootstrap.com/) 4.x
-- [jQuery](https://jquery.com/) (you don't have to use it)
+- [jQuery](https://jquery.com/) (waiting for Bootstrap v5 release to get rid of jQuery)
 - [Sass](https://sass-lang.com/)
 - [Handlebars](https://handlebarsjs.com/)
 - [Typescript](http://www.typescriptlang.org/) 3.x
