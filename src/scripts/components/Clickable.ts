@@ -1,36 +1,34 @@
-export default function Clickable(container: HTMLElement): void {
+export const Clickable = (container: HTMLElement): void => {
+  const classesName = {
+    JS_HOVER: 'js-hover',
+  }
 
-	const classesName = {
-		JS_HOVER: 'js-hover'
-	}
+  container.addEventListener('click', () => {
+    const link = container.querySelector('a')
 
-	container.addEventListener('click', () => {
-		const link = container.querySelector('a')
+    if (link) {
+      const linkUrl: string = link.getAttribute('href') || ''
+      let newWindowOpened = true
 
-		if (link) {
-			const linkUrl: string = link.getAttribute('href') || ''
-			let newWindowOpened = true
+      if (link.getAttribute('target') === '_blank') {
+        newWindowOpened = window.open(linkUrl) ? true : false
+      } else {
+        window.location.href = linkUrl
+      }
 
-			if (link.getAttribute('target') === '_blank') {
-				newWindowOpened = window.open(linkUrl) ? true : false
-			} else {
-				window.location.href = linkUrl
-			}
+      if (!newWindowOpened) {
+        window.location.href = linkUrl
+      }
 
-			if (!newWindowOpened) {
-				window.location.href = linkUrl
-			}
+      return false
+    }
+  })
 
-			return false
-		}
-	})
+  container.addEventListener('mouseenter', () => {
+    container.classList.add(classesName.JS_HOVER)
+  })
 
-	container.addEventListener('mouseenter', () => {
-		container.classList.add(classesName.JS_HOVER)
-	})
-
-	container.addEventListener('mouseleave', () => {
-		container.classList.remove(classesName.JS_HOVER)
-	})
-
+  container.addEventListener('mouseleave', () => {
+    container.classList.remove(classesName.JS_HOVER)
+  })
 }

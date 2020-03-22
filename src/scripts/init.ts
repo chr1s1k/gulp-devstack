@@ -1,15 +1,19 @@
 export function init(fn: Function, element: HTMLElement | null, ...args: any): void {
-	if (element) {
-		fn(element, ...args)
-	}
+  if (element) {
+    fn(element, ...args)
+  }
 }
 
-export function initMultiple(fn: Function, listOfElements: NodeListOf<HTMLElement> | HTMLCollection, ...args: any): void {
-	if (listOfElements.length) {
-		const elements = Array.from(listOfElements)
+export function initMultiple(
+  fn: Function,
+  listOfElements: NodeListOf<HTMLElement> | HTMLCollection,
+  ...args: any
+): void {
+  if (listOfElements.length) {
+    const elements = Array.from(listOfElements)
 
-		elements.forEach(el => {
-			fn(el, ...args)
-		})
-	}
+    elements.forEach(el => {
+      fn(el, ...args)
+    })
+  }
 }

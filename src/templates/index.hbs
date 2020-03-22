@@ -2,30 +2,30 @@
 {{> header }}
 
 <main class="content">
-	<div class="container">
-		<h1>It works!</h1>
-		<h2>Example of gallery</h2>
-		<div class="row mb-4 gallery js-gallery">
-			{{#parse json='[
-				{
-					"thumbnailUrl": "http://satyr.io/580x340/1",
-					"originalUrl": "http://satyr.io/1920x1080/1"
-				},
-				{
-					"thumbnailUrl": "http://satyr.io/580x340/2",
-					"originalUrl": "http://satyr.io/1920x1080/2"
-				},
-				{
-					"thumbnailUrl": "http://satyr.io/580x340/3",
-					"originalUrl": "http://satyr.io/1920x1080/3"
-				}
-			]'}}
-				{{#each this}}
-					{{> gallery-item image=this }}
-				{{/each}}
-			{{/parse}}
-		</div>
-	</div>
+  <div class="container">
+    <h1>It works!</h1>
+    <h2>Example of gallery</h2>
+    <div class="row mb-4 gallery js-gallery">
+      {{#parse json='[
+        {
+          "thumbnailUrl": "http://satyr.io/580x340/1",
+          "originalUrl": "http://satyr.io/1920x1080/1"
+        },
+        {
+          "thumbnailUrl": "http://satyr.io/580x340/2",
+          "originalUrl": "http://satyr.io/1920x1080/2"
+        },
+        {
+          "thumbnailUrl": "http://satyr.io/580x340/3",
+          "originalUrl": "http://satyr.io/1920x1080/3"
+        }
+      ]'}}
+        {{#each this}}
+          {{> gallery-item image=this }}
+        {{/each}}
+      {{/parse}}
+    </div>
+  </div>
 </main>
 
 {{> footer }}
