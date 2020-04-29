@@ -25,6 +25,7 @@ import w3cjs from 'gulp-w3cjs'
 import tsify from 'tsify'
 import zip from 'gulp-zip'
 import bump from 'gulp-bump'
+import autoprefixer from 'gulp-autoprefixer'
 
 const errorHandler = err => {
   beeper() // terminal beep
@@ -88,30 +89,39 @@ function templates() {
 }
 
 function styles() {
-  return gulp
-    .src('./src/stylesheets/*.scss', { sourcemaps: true })
-    .pipe(
-      plumber({
-        errorHandler,
-      })
-    )
-    .pipe(
-      sass({
-        precision: 8,
-        outputStyle: isProduction ? 'compressed' : 'expanded',
-        includePaths: ['./node_modules/'],
-      }).on('error', sass.logError)
-    )
-    .pipe(
-      gulpif(
-        isProduction,
-        rename(path => {
-          path.extname = '.min.css'
+  return (
+    gulp
+      .src('./src/stylesheets/*.scss', { sourcemaps: true })
+      .pipe(
+        plumber({
+          errorHandler,
         })
       )
-    )
-    .pipe(gulp.dest('./dist/css', { sourcemaps: '.' })) // write an external sourcemaps
-    .pipe(server.stream())
+      .pipe(
+        sass({
+          precision: 8,
+          outputStyle: isProduction ? 'compressed' : 'expanded',
+          includePaths: ['./node_modules/'],
+        }).on('error', sass.logError)
+      )
+      .pipe(
+        autoprefixer({
+          flexbox: false,
+          grid: false,
+        })
+      )
+      .pipe(
+        gulpif(
+          isProduction,
+          rename(path => {
+            path.extname = '.min.css'
+          })
+        )
+      )
+      // write an external sourcemaps, but only in development mode
+      .pipe(gulp.dest('./dist/css', { sourcemaps: !isProduction && '.' }))
+      .pipe(server.stream())
+  )
 }
 
 // https://thecodeboss.dev/2016/01/building-es6-javascript-for-the-browser-with-gulp-babel-and-more/
