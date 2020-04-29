@@ -1,16 +1,40 @@
 .js-hover {
-	cursor: pointer;
+  cursor: pointer;
 
-	a {
-		text-decoration: underline;
-	}
+  a {
+    text-decoration: underline;
+  }
 }
 
 .js-lazyload {
-	opacity: 0;
-	@include transition(opacity);
+  opacity: 0;
+  @include transition(opacity);
 
-	&.loaded {
-		opacity: 1;
-	}
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+.v-center,
+.v-center-large {
+  display: inline-flex;
+  align-items: center;
+}
+.v-center {
+  > *:not(:last-child) {
+    margin-right: map-get($spacers, 2);
+  }
+}
+.v-center-large {
+  > *:not(:last-child) {
+    margin-right: map-get($spacers, 3);
+  }
+}
+
+html {
+  @each $gray-level, $value in $grays {
+    .text-gray-#{$gray-level} {
+      color: $value;
+    }
+  }
 }
