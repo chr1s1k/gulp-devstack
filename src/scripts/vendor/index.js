@@ -1,4 +1,4 @@
-//= require jquery/dist/jquery.js
+//= require jquery/dist/jquery.slim.js
 //= require popper.js/dist/umd/popper.js
 
 //= require bootstrap/js/dist/util.js
