@@ -1,38 +1,44 @@
 ::selection {
-	color: $selection-color;
-	background: $selection-bg-color;
-	text-shadow: none;
+  color: $selection-color;
+  background: $selection-bg-color;
+  text-shadow: none;
 }
 ::-moz-selection {
-	color: $selection-color;
-	background: $selection-bg-color;
-	text-shadow: none;
+  color: $selection-color;
+  background: $selection-bg-color;
+  text-shadow: none;
 }
 
 html {
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	font-family: $font-family-brand, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: $font-family-brand, sans-serif;
+
+  @include media-breakpoint-down($navbar-mobile-breakpoint) {
+    &.navbar-visible {
+      overflow: hidden;
+    }
+  }
 }
 
 a {
-	@include transition(color);
+  @include transition(color);
 }
 
 iframe,
 video {
-	max-width: 100%;
+  max-width: 100%;
 }
 
 iframe {
-	border: 0;
+  border: 0;
 }
 
 svg {
-	fill: currentColor;
-	@include transition(fill);
+  fill: currentColor;
+  @include transition(fill);
 }

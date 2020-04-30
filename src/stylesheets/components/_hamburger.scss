@@ -1,0 +1,24 @@
+.hamburger {
+  display: block;
+  line-height: 0;
+  background: #fff;
+  overflow: hidden;
+  @include media-breakpoint-up($navbar-desktop-breakpoint) {
+    display: none;
+  }
+
+  &-inner {
+    &,
+    &::before,
+    &::after {
+      @media (prefers-reduced-motion: reduce) {
+        transition: none !important;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    position: relative;
+    z-index: $navbar-mobile-zindex + 1;
+  }
+}

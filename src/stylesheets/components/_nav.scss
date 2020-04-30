@@ -1,0 +1,69 @@
+.navbar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.navbar-collapse {
+  // make the value of the breakpoint readable by JS
+  --navbar-mobile-bp: #{map-get($grid-breakpoints, $navbar-desktop-breakpoint)};
+
+  @include media-breakpoint-down($navbar-mobile-breakpoint) {
+    width: $navbar-mobile-width;
+    height: 100vh;
+    position: fixed;
+    background-color: $white;
+    top: 0;
+    right: 0;
+    z-index: $navbar-mobile-zindex;
+    transform: translateX(#{$navbar-mobile-width});
+    transition: transform 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    .navbar-visible & {
+      transform: translateX(0);
+      overflow-y: auto;
+
+      .ios.safari & {
+        @media (orientation: portrait) {
+          padding-bottom: 75px;
+        }
+      }
+    }
+
+    .navbar-nav {
+      margin-top: 75px;
+
+      .nav-link {
+        padding-left: $spacer;
+        padding-right: $spacer;
+      }
+    }
+  }
+}
+
+.navbar-backdrop {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: $black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $navbar-backdrop-zindex;
+  opacity: 0;
+  pointer-events: none;
+  @include transition(opacity);
+  transition-delay: $transition-duration;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  .navbar-visible & {
+    @include media-breakpoint-down($navbar-mobile-breakpoint) {
+      pointer-events: auto;
+      opacity: 0.5;
+    }
+  }
+}

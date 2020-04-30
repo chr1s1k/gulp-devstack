@@ -52,12 +52,15 @@ $font-family-brand:            "Great Vibes";
 // $headings-margin-bottom:			1rem !default;
 
 
-//== Components
+//== Hamburger
 //
 
-
-//== Others
-//
+$hamburger-padding-x:                 10px;
+$hamburger-padding-y:                 $hamburger-padding-x;
+$hamburger-hover-opacity:             1;
+$hamburger-layer-color:               $primary;
+$hamburger-layer-width:               28px;
+$hamburger-layer-height:              4px;
 
 
 //== Forms

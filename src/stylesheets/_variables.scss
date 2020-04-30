@@ -28,3 +28,13 @@ $gallery-img-border-hover:					darken($primary, 20%);
 //
 
 $transition-duration:								0.2s;
+
+
+//== Navbar
+//
+
+$navbar-backdrop-zindex:           900;
+$navbar-desktop-breakpoint:        md;
+$navbar-mobile-breakpoint:         sm; 
+$navbar-mobile-width:              220px;
+$navbar-mobile-zindex:             $navbar-backdrop-zindex + 1;
