@@ -4,6 +4,21 @@ const excludeLinks = (links: HTMLAnchorElement[]): void => {
   })
 }
 
+const includeLinks = (links: HTMLAnchorElement[]): void => {
+  links.forEach(link => {
+    link.removeAttribute('tabindex')
+  })
+}
+
+const matchMediaHandler = (media: MediaQueryList): Promise<boolean> =>
+  new Promise((resolve, reject) => {
+    if (media.matches) {
+      resolve(true)
+    } else {
+      reject()
+    }
+  })
+
 export const Navbar = (navbar: HTMLElement): void => {
   const esc = {
     KEY: 'escape',
@@ -42,9 +57,7 @@ export const Navbar = (navbar: HTMLElement): void => {
     hamburger?.setAttribute('aria-expanded', 'true')
 
     // include links back to tab flow
-    navbarLinks.forEach(link => {
-      link.removeAttribute('tabindex')
-    })
+    includeLinks(navbarLinks)
   })
 
   navbar.addEventListener('hide.navbar', () => {
@@ -68,12 +81,22 @@ export const Navbar = (navbar: HTMLElement): void => {
     }
   })
 
-  // if page is load on mobile and navbar is not visible => exclude links from tab flow
-  if (
-    !!navbarMobileBp &&
-    window.matchMedia(`(max-width: ${navbarMobileBp})`).matches &&
-    !body.classList.contains(classes.NAVBAR_VISIBLE)
-  ) {
-    excludeLinks(navbarLinks)
+  const matchMedia = !!navbarMobileBp && window.matchMedia(`(max-width: ${navbarMobileBp})`)
+
+  // if custom css property was provide => check for breakpoint changes
+  if (matchMedia) {
+    // run media check once when page is loaded
+    matchMediaHandler(matchMedia).then(() => excludeLinks(navbarLinks))
+
+    // check for breakpoint changes
+    matchMedia.addEventListener('change', () => {
+      matchMediaHandler(matchMedia)
+        .then(() => {
+          if (!body.classList.contains(classes.NAVBAR_VISIBLE)) {
+            excludeLinks(navbarLinks)
+          }
+        })
+        .catch(() => includeLinks(navbarLinks))
+    })
   }
 }
