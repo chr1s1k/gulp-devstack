@@ -83,20 +83,35 @@ export const Navbar = (navbar: HTMLElement): void => {
 
   const matchMedia = !!navbarMobileBp && window.matchMedia(`(max-width: ${navbarMobileBp})`)
 
-  // if custom css property was provide => check for breakpoint changes
+  // if custom css property was provided => check for breakpoint changes
   if (matchMedia) {
-    // run media check once when page is loaded
-    matchMediaHandler(matchMedia).then(() => excludeLinks(navbarLinks))
+    // run media check once when the page is loaded
+    matchMediaHandler(matchMedia).then(matched => {
+      if (matched) {
+        excludeLinks(navbarLinks)
+      }
+    })
 
     // check for breakpoint changes
-    matchMedia.addEventListener('change', () => {
-      matchMediaHandler(matchMedia)
-        .then(() => {
-          if (!body.classList.contains(classes.NAVBAR_VISIBLE)) {
+    // safari doesn't support addEventListener method
+    if (matchMedia.addEventListener !== undefined) {
+      matchMedia.addEventListener('change', () => {
+        matchMediaHandler(matchMedia).then(matched => {
+          if (matched && !body.classList.contains(classes.NAVBAR_VISIBLE)) {
             excludeLinks(navbarLinks)
+          } else {
+            includeLinks(navbarLinks)
           }
         })
-        .catch(() => includeLinks(navbarLinks))
-    })
+      })
+    } else {
+      matchMedia.addListener(event => {
+        if (event.matches && !body.classList.contains(classes.NAVBAR_VISIBLE)) {
+          excludeLinks(navbarLinks)
+        } else {
+          includeLinks(navbarLinks)
+        }
+      })
+    }
   }
 }
