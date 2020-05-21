@@ -11,11 +11,11 @@ const includeLinks = (links: HTMLAnchorElement[]): void => {
 }
 
 const matchMediaHandler = (media: MediaQueryList): Promise<boolean> =>
-  new Promise((resolve, reject) => {
+  new Promise(resolve => {
     if (media.matches) {
       resolve(true)
     } else {
-      reject()
+      resolve(false)
     }
   })
 
