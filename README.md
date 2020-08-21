@@ -2,11 +2,10 @@
 
 ## Features
 
-- [Bootstrap](https://getbootstrap.com/) 4.x
-- [jQuery](https://jquery.com/) (waiting for Bootstrap v5 release to get rid of jQuery)
+- [Bootstrap](https://getbootstrap.com/) 5.x
 - [Sass](https://sass-lang.com/)
 - [Handlebars](https://handlebarsjs.com/)
-- [Typescript](http://www.typescriptlang.org/) 3.x
+- [Typescript](http://www.typescriptlang.org/) 4.x
 - [SVG sprite](https://github.com/jkphl/gulp-svg-sprite)
 - [ESLint](https://eslint.org/)
 - [blueimp Gallery](https://github.com/blueimp/Gallery)

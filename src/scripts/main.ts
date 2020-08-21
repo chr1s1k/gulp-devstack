@@ -1,11 +1,15 @@
 import 'core-js/modules/es.array.from'
 
-interface IBlueimp {
-  Gallery: (list: NodeList | HTMLCollection, options?: object) => void
+import { init, initMultiple } from './init'
+
+import { Document, Clickable, Gallery, Lazyload, Navbar } from './components'
+
+type IBlueimp = {
+  Gallery: (list: NodeList | HTMLCollection, options?: Record<string, unknown>) => void
 }
 
-interface IMiniLazyload {
-  (options?: object, selector?: string, ignoreNative?: boolean): void
+type IMiniLazyload = {
+  (options?: Record<string, unknown>, selector?: string, ignoreNative?: boolean): void
   IGNORE_NATIVE_LAZYLOAD: boolean
 }
 
@@ -17,10 +21,6 @@ declare global {
     initUI: (container: HTMLElement | Document) => void
   }
 }
-
-import { init, initMultiple } from './init'
-
-import { Document, Clickable, Gallery, Lazyload, Navbar } from './components'
 
 const app = {
   runOnce() {
