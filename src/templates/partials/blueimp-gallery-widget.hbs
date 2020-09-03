@@ -1,13 +1,13 @@
-<div id="blueimp-gallery" class="blueimp-gallery">
-  <div class="slides"></div>
+<div id="blueimp-gallery" class="blueimp-gallery" aria-modal="true" role="dialog">
+  <div class="slides" aria-live="polite"></div>
   <h3 class="title"></h3>
-  <a class="prev" aria-label="Previous" role="button">
+  <a class="prev" aria-label="Previous" aria-keyshortcuts="ArrowLeft" role="button">
     {{> svg icon="arrow-left" width="15" height="30" }}
   </a>
-  <a class="next" aria-label="Next" role="button">
+  <a class="next" aria-label="Next" aria-keyshortcuts="ArrowRight" role="button">
     {{> svg icon="arrow-right" width="15" height="30" }}
   </a>
-  <a class="close" aria-label="Close" role="button">
+  <a class="close" aria-label="Close" aria-keyshortcuts="Esc" role="button">
     {{> svg icon="close" width="30" height="30" }}
   </a>
 </div>

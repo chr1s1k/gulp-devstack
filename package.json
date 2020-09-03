@@ -1,6 +1,6 @@
 {
   "name": "gulp-devstack",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "author": {
     "name": "Radek Sukup",
     "url": "https://radeksukup.com",
@@ -13,22 +13,22 @@
     "build": "gulp build"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
-    "@babel/register": "^7.9.0",
-    "@typescript-eslint/eslint-plugin": "^2.33.0",
-    "@typescript-eslint/parser": "^2.33.0",
+    "@babel/core": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/register": "^7.11.5",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
     "ansi-colors": "^4.1.1",
     "babelify": "^10.0.0",
     "beeper": "^2.0.0",
     "browser-sync": "^2.26.7",
     "browserify": "^16.5.1",
     "del": "^5.1.0",
-    "eslint": "^7.0.0",
+    "eslint": "^7.8.1",
     "fancy-log": "^1.3.3",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
-    "gulp-bump": "^3.1.3",
+    "gulp-bump": "^3.2.0",
     "gulp-compile-handlebars": "^0.6.1",
     "gulp-eslint": "^6.0.0",
     "gulp-if": "^3.0.0",
@@ -43,20 +43,18 @@
     "gulp-w3cjs": "^1.3.2",
     "gulp-webserver": "^0.9.1",
     "gulp-zip": "^5.0.1",
-    "prettier": "^2.0.5",
-    "tsify": "^4.0.1",
-    "typescript": "^3.9.2",
+    "prettier": "^2.1.1",
+    "tsify": "^5.0.2",
+    "typescript": "^4.0.2",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
-    "blueimp-gallery": "^2.38.0",
-    "bootstrap": "^4.5.0",
+    "blueimp-gallery": "^3.3.0",
+    "bootstrap": "^5.0.0-alpha1",
     "core-js": "3.6.5",
     "hamburgers": "^1.1.3",
-    "jquery": "3.5.1",
     "minilazyload": "^2.3.4",
-    "popper.js": "^1.16.0",
-    "skrolltop": "^1.0.1"
+    "popper.js": "^1.16.1"
   }
 }

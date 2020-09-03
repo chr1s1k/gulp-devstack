@@ -1,7 +1,11 @@
-//= require jquery/dist/jquery.slim.js
 //= require popper.js/dist/umd/popper.js
 
-//= require bootstrap/js/dist/util.js
+//= require bootstrap/js/dist/dom/data.js
+//= require bootstrap/js/dist/dom/event-handler.js
+//= require bootstrap/js/dist/dom/manipulator.js
+//= require bootstrap/js/dist/dom/polyfill.js
+//= require bootstrap/js/dist/dom/selector-engine.js
+
 //= require bootstrap/js/dist/alert.js
 //= require bootstrap/js/dist/button.js
 //= require bootstrap/js/dist/carousel.js
@@ -12,6 +16,7 @@
 //= require bootstrap/js/dist/popover.js
 //= require bootstrap/js/dist/scrollspy.js
 //= require bootstrap/js/dist/tab.js
+//= require bootstrap/js/dist/toast.js
 
 //= require minilazyload/dist/minilazyload.min.js
 
