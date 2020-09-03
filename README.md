@@ -26,7 +26,7 @@ Install [Yarn](https://yarnpkg.com/lang/en/).
 
 To compile assets, start development server with watch task run:
 
-```gulp init```
+```gulp init``` or ```yarn start```
 
 To start development server with watch task run:
 
@@ -36,7 +36,7 @@ To start development server with watch task run:
 
 To compile & minify all assets ready for production deployment run:
 
-```gulp build```
+```gulp build``` or ```yarn build```
 
 ### Production package
 
