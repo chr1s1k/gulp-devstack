@@ -10,7 +10,13 @@
   "private": true,
   "scripts": {
     "start": "gulp init",
-    "build": "gulp build"
+    "build": "gulp build",
+    "prepush": "gulp eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn prepush"
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.11.5",
@@ -43,6 +49,7 @@
     "gulp-w3cjs": "^1.3.2",
     "gulp-webserver": "^0.9.1",
     "gulp-zip": "^5.0.1",
+    "husky": "^4.3.0",
     "prettier": "^2.1.1",
     "tsify": "^5.0.2",
     "typescript": "^4.0.2",
