@@ -30,7 +30,7 @@ import autoprefixer from 'gulp-autoprefixer'
 const errorHandler = err => {
   beeper() // terminal beep
   fancylog(
-    colors.bold.red(err.message) // log a colored message
+    colors.bold.red(err.message), // log a colored message
   )
 }
 
@@ -64,13 +64,13 @@ function templates() {
               return options.fn(JSON.parse(options.hash.json))
             },
           },
-        }
-      )
+        },
+      ),
     )
     .pipe(
       rename(path => {
         path.extname = '.html'
-      })
+      }),
     )
     .pipe(
       gulpif(
@@ -81,8 +81,8 @@ function templates() {
           indent_char: ' ',
           indent_size: 2,
           unformatted: ['script', 'style'],
-        })
-      )
+        }),
+      ),
     )
     .pipe(gulp.dest('./dist'))
     .pipe(server.stream({ reload: true }))
@@ -95,28 +95,28 @@ function styles() {
       .pipe(
         plumber({
           errorHandler,
-        })
+        }),
       )
       .pipe(
         sass({
           precision: 8,
           outputStyle: isProduction ? 'compressed' : 'expanded',
           includePaths: ['./node_modules/'],
-        }).on('error', sass.logError)
+        }).on('error', sass.logError),
       )
       .pipe(
         autoprefixer({
           flexbox: false,
           grid: false,
-        })
+        }),
       )
       .pipe(
         gulpif(
           isProduction,
           rename(path => {
             path.extname = '.min.css'
-          })
-        )
+          }),
+        ),
       )
       // write an external sourcemaps, but only in development mode
       .pipe(gulp.dest('./dist/css', { sourcemaps: !isProduction && '.' }))
@@ -145,8 +145,8 @@ function bundlejs() {
         isProduction,
         rename(path => {
           path.extname = '.min.js'
-        })
-      )
+        }),
+      ),
     )
     .pipe(gulp.dest('./dist/js'))
     .pipe(server.stream({ stream: true }))
@@ -186,7 +186,7 @@ function svg() {
             sprite: 'sprite.svg',
           },
         },
-      })
+      }),
     )
     .pipe(gulp.dest('./dist/images'))
 }
@@ -201,16 +201,13 @@ function lint() {
         if (result.errorCount) {
           beeper() // if at least one eslint error has found => just beep the terminal
         }
-      })
+      }),
     )
     .pipe(eslint.failAfterError())
 }
 
 function validateTemplates() {
-  return gulp
-    .src('./dist/*.html')
-    .pipe(w3cjs())
-    .pipe(w3cjs.reporter())
+  return gulp.src('./dist/*.html').pipe(w3cjs()).pipe(w3cjs.reporter())
 }
 
 function vendorjs() {
@@ -219,17 +216,17 @@ function vendorjs() {
     .pipe(
       plumber({
         errorHandler,
-      })
+      }),
     )
     .pipe(
       include({
         includePaths: ['./node_modules'],
-      })
+      }),
     )
     .pipe(
       rename(path => {
         path.basename = 'vendor'
-      })
+      }),
     )
     .pipe(gulpif(isProduction, uglify()))
     .pipe(
@@ -237,8 +234,8 @@ function vendorjs() {
         isProduction,
         rename(path => {
           path.extname = '.min.js'
-        })
-      )
+        }),
+      ),
     )
     .pipe(gulp.dest('./dist/js'))
 }
@@ -246,17 +243,11 @@ function vendorjs() {
 function createZip() {
   const zipFileName = `${packageJson.name}-${packageJson.version}.zip`
 
-  return gulp
-    .src('./dist/**/*')
-    .pipe(zip(zipFileName))
-    .pipe(gulp.dest('./dist'))
+  return gulp.src('./dist/**/*').pipe(zip(zipFileName)).pipe(gulp.dest('./dist'))
 }
 
 function increasePackageVersion() {
-  return gulp
-    .src('./package.json')
-    .pipe(gulpif(isProduction, bump()))
-    .pipe(gulp.dest('./'))
+  return gulp.src('./package.json').pipe(gulpif(isProduction, bump())).pipe(gulp.dest('./'))
 }
 
 function watch() {
@@ -289,7 +280,7 @@ const build = series(
   clean,
   parallel(templates, styles, scripts, images, favicons, fonts, svg),
   increasePackageVersion,
-  validateTemplates
+  validateTemplates,
 )
 
 exports.default = defaultTask
@@ -311,5 +302,5 @@ exports.zip = createZip
 exports.init = series(
   clean,
   parallel(templates, styles, scripts, images, favicons, fonts, svg),
-  defaultTask
+  defaultTask,
 )
