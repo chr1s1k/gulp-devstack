@@ -24,7 +24,6 @@ const matchMediaHandler = (media: MediaQueryList): Promise<boolean> =>
 export const Navbar = (navbar: HTMLElement): void => {
   const esc = {
     KEY: 'escape',
-    KEY_CODE: 27,
   }
   const classes = {
     IS_ACTIVE: 'is-active',
@@ -78,10 +77,7 @@ export const Navbar = (navbar: HTMLElement): void => {
 
   // hide the navbar using ESC key
   document.addEventListener('keydown', (event: KeyboardEvent) => {
-    if (
-      (event.key !== undefined && event.key.toLowerCase() === esc.KEY) ||
-      event.keyCode === esc.KEY_CODE
-    ) {
+    if (event.key?.toLowerCase() === esc.KEY) {
       if (body.classList.contains(classes.NAVBAR_VISIBLE)) {
         navbar.dispatchEvent(hideNavbarEvent)
       }
