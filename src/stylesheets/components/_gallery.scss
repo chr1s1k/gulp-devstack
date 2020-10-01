@@ -95,6 +95,12 @@
       display: none;
     }
   }
+
+  &-svgasimg {
+    > .close {
+      background-image: none;
+    }
+  }
 }
 
 @-webkit-keyframes spin {

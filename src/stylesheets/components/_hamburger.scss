@@ -17,7 +17,7 @@
     }
   }
 
-  @include media-breakpoint-down($navbar-mobile-breakpoint) {
+  @include media-breakpoint-down($navbar-desktop-breakpoint) {
     position: relative;
     z-index: $navbar-mobile-zindex + 1;
   }

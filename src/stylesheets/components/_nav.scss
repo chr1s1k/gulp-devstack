@@ -9,7 +9,7 @@
   // make the value of the breakpoint readable by JS
   --navbar-mobile-bp: #{map-get($grid-breakpoints, $navbar-desktop-breakpoint)};
 
-  @include media-breakpoint-down($navbar-mobile-breakpoint) {
+  @include media-breakpoint-down($navbar-desktop-breakpoint) {
     width: $navbar-mobile-width;
     height: 100vh;
     position: fixed;
@@ -61,7 +61,7 @@
   }
 
   .navbar-visible & {
-    @include media-breakpoint-down($navbar-mobile-breakpoint) {
+    @include media-breakpoint-down($navbar-desktop-breakpoint) {
       pointer-events: auto;
       opacity: 0.5;
     }

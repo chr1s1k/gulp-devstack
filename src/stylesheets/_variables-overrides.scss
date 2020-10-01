@@ -1,47 +1,45 @@
 //== Colors
 //
 
-$white:                         #fff;
-$red:                           #d90000;
-$primary:                       #007bff;
-$secondary:                     #00ff5e;
-$selection-color:               $white;
-$selection-bg-color:            #000;
+$white: #fff;
+$red: #d90000;
+$primary: #007bff;
+$secondary: #00ff5e;
+$selection-color: $white;
+$selection-bg-color: #000;
 
-$body-color:                    #424242;
-$body-bg:                       #f9f9f9;
+$body-color: #424242;
+$body-bg: #f9f9f9;
 
-$link-color:                    $primary;
-$link-hover-color:              darken($link-color, 15%);
-$link-decoration:               none;
-$link-hover-decoration:         underline;
+$link-color: $primary;
+$link-hover-color: darken($link-color, 15%);
+$link-decoration: none;
+$link-hover-decoration: underline;
 
-$gray-000:											#fafafa;
-$gray-100:											#f1f1f1;
-$gray-200:											#ebebeb;
-$gray-300:											#b0b0b0;
-$gray-400:											#7f7f7f;
-$gray-500:											#494949;
-$gray-600:											#383838;
-$gray-700:											#2a2929;
-$gray-800:											#181819;
-
+$gray-000: #fafafa;
+$gray-100: #f1f1f1;
+$gray-200: #ebebeb;
+$gray-300: #b0b0b0;
+$gray-400: #7f7f7f;
+$gray-500: #494949;
+$gray-600: #383838;
+$gray-700: #2a2929;
+$gray-800: #181819;
 
 //== General
 //
 
-$enable-rounded:                true;
-$enable-shadows:                false;
-$border-width:                  1px;
-$enable-responsive-font-sizes:	true;
-
+$enable-rounded: true;
+$enable-shadows: false;
+$border-width: 1px;
+$enable-responsive-font-sizes: true;
 
 //== Typography
 //
 
-$font-family-sans-serif:       "Helvetica Neue", Helvetica, Tahoma, Verdana, sans-serif;
-$font-family-brand:            "Great Vibes";
-// $font-size-base:              14px;
+$font-family-sans-serif: 'Helvetica Neue', Helvetica, Tahoma, Verdana, sans-serif;
+$font-family-brand: 'Great Vibes';
+$font-size-base: rem(16);
 // $h1-font-size:                $font-size-base * 2.5 !default;
 // $h2-font-size:                $font-size-base * 2 !default;
 // $h3-font-size:                $font-size-base * 1.75 !default;
@@ -51,36 +49,33 @@ $font-family-brand:            "Great Vibes";
 // $headings-color:              inherit !default;
 // $headings-margin-bottom:			1rem !default;
 
-
 //== Hamburger
 //
 
-$hamburger-padding-x:                 10px;
-$hamburger-padding-y:                 $hamburger-padding-x;
-$hamburger-hover-opacity:             1;
-$hamburger-layer-color:               $primary;
-$hamburger-layer-width:               28px;
-$hamburger-layer-height:              4px;
-
+$hamburger-padding-x: 10px;
+$hamburger-padding-y: $hamburger-padding-x;
+$hamburger-hover-opacity: 1;
+$hamburger-layer-color: $primary;
+$hamburger-layer-width: 28px;
+$hamburger-layer-height: 4px;
 
 //== Forms
 //
 
-$input-color:                         $body-color;
-$input-bg:                            $white;
-$input-border-color:                  $primary;
-$input-placeholder-color:             $gray-400;
-$input-border-width:                  $border-width;
+$input-color: $body-color;
+$input-bg: $white;
+$input-border-color: $primary;
+$input-placeholder-color: $gray-400;
+$input-border-width: $border-width;
 
-$btn-border-width:                    $border-width;
-
+$btn-border-width: $border-width;
 
 //== Navbar
 //
 
-$navbar-padding-x:                    0;
-$navbar-padding-y:                    0;
-$navbar-brand-padding-y:              0;
+$navbar-padding-x: 0;
+$navbar-padding-y: 0;
+$navbar-brand-padding-y: 0;
 // $navbar-light-color:                  $primary;
-$navbar-light-hover-color:            $primary;
-$navbar-light-active-color:           $primary;
+$navbar-light-hover-color: $primary;
+$navbar-light-active-color: $primary;

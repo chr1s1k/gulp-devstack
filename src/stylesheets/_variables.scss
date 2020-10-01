@@ -1,40 +1,35 @@
 //== Common
 //
 
-$custom-font-path:       "../fonts/";
-
+$custom-font-path: '../fonts/';
 
 //== Grid
 //
 
-$screen-xs-min:           map-get($grid-breakpoints, "sm");
-$screen-xxs-max:          ($screen-xs-min - 1);
-
+$screen-xs-min: map-get($grid-breakpoints, 'sm');
+$screen-xxs-max: ($screen-xs-min - 1);
 
 //== Forms
 //
 
-$textarea-min-height:    100px;
-
+$textarea-min-height: 100px;
 
 //== Gallery
 //
 
-$gallery-img-border:								$primary;
-$gallery-img-border-hover:					darken($primary, 20%);
-
+$gallery-img-border: $primary;
+$gallery-img-border-hover: darken($primary, 20%);
 
 //== Transition
 //
 
-$transition-duration:								0.2s;
-
+$transition-duration: 0.2s;
 
 //== Navbar
 //
 
-$navbar-backdrop-zindex:           900;
-$navbar-desktop-breakpoint:        md;
-$navbar-mobile-breakpoint:         sm; 
-$navbar-mobile-width:              220px;
-$navbar-mobile-zindex:             $navbar-backdrop-zindex + 1;
+$navbar-backdrop-zindex: 900;
+$navbar-desktop-breakpoint: md;
+$navbar-mobile-breakpoint: sm;
+$navbar-mobile-width: 220px;
+$navbar-mobile-zindex: $navbar-backdrop-zindex + 1;
