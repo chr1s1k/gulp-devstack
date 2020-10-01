@@ -1,3 +1,5 @@
+import { FocusTrap } from '../utils'
+
 const excludeLinks = (links: HTMLAnchorElement[]): void => {
   links.forEach(link => {
     link.setAttribute('tabindex', '-1')
@@ -36,6 +38,7 @@ export const Navbar = (navbar: HTMLElement): void => {
   const hideNavbarEvent = new CustomEvent('hide.navbar')
   const navbarLinks = Array.from(navbar.querySelectorAll('a'))
   const navbarMobileBp = getComputedStyle(navbar).getPropertyValue('--navbar-mobile-bp')
+  const focusTrap = new FocusTrap(navbar)
 
   pageOverlay.className = classes.NAVBAR_BACKDROP
   pageOverlay.addEventListener('click', () => {
@@ -58,6 +61,8 @@ export const Navbar = (navbar: HTMLElement): void => {
 
     // include links back to tab flow
     includeLinks(navbarLinks)
+
+    focusTrap.activate()
   })
 
   navbar.addEventListener('hide.navbar', () => {
@@ -67,6 +72,8 @@ export const Navbar = (navbar: HTMLElement): void => {
 
     // exclude "hidden" links from tab flow
     excludeLinks(navbarLinks)
+
+    focusTrap.destroy()
   })
 
   // hide the navbar using ESC key
