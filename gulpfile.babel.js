@@ -26,6 +26,8 @@ import tsify from 'tsify'
 import zip from 'gulp-zip'
 import bump from 'gulp-bump'
 import autoprefixer from 'gulp-autoprefixer'
+import postcss from 'gulp-postcss'
+import inlineSVG from 'postcss-inline-svg'
 
 const errorHandler = err => {
   beeper() // terminal beep
@@ -110,6 +112,7 @@ function styles() {
           grid: false,
         }),
       )
+      .pipe(postcss([inlineSVG()]))
       .pipe(
         gulpif(
           isProduction,
