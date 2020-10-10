@@ -16,5 +16,6 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "exclude": ["node_modules/", "src/scripts/vendor/**/*"]
+  "exclude": ["node_modules/", "src/scripts/vendor/**/*"],
+  "include": ["src/scripts/@types/global.d.ts"]
 }

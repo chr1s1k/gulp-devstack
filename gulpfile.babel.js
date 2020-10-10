@@ -8,7 +8,7 @@ import plumber from 'gulp-plumber'
 import beeper from 'beeper'
 import colors from 'ansi-colors'
 import fancylog from 'fancy-log'
-import uglify from 'gulp-uglify'
+import uglify from 'gulp-uglify-es'
 import include from 'gulp-include'
 import del from 'del'
 import browserify from 'browserify'
@@ -210,7 +210,26 @@ function lint() {
 }
 
 function validateTemplates() {
-  return gulp.src('./dist/*.html').pipe(w3cjs()).pipe(w3cjs.reporter())
+  return gulp
+    .src('./dist/*.html')
+    .pipe(
+      w3cjs({
+        verifyMessage: (type, message) => {
+          // prevent logging error message in for src attribute of images
+          if (
+            message.indexOf(
+              "Bad value “data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'",
+            ) !== -1
+          ) {
+            return false
+          }
+
+          // allow message to pass through
+          return true
+        },
+      }),
+    )
+    .pipe(w3cjs.reporter())
 }
 
 function vendorjs() {
