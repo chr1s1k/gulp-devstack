@@ -148,7 +148,16 @@ function bundlejs(done) {
         },
       ],
     },
-    plugins: [new webpack.ProgressPlugin()],
+    plugins: [
+      new webpack.ProgressPlugin(),
+      {
+        apply: compiler => {
+          compiler.hooks.afterEmit.tap('AfterEmitPlugin', compilation => {
+            server.reload()
+          })
+        },
+      },
+    ],
   }
 
   webpack(config, (error, stats) => {
