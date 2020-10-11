@@ -54,7 +54,7 @@
     "postcss-inline-svg": "^4.1.0",
     "prettier": "^2.1.1",
     "typescript": "^4.0.3",
-    "webpack": "^4.44.2"
+    "webpack": "^5.0.0"
   },
   "dependencies": {
     "blueimp-gallery": "^3.3.0",
