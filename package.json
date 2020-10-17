@@ -1,6 +1,6 @@
 {
   "name": "gulp-devstack",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": {
     "name": "Radek Sukup",
     "url": "https://radeksukup.com",
@@ -54,7 +54,7 @@
     "postcss-inline-svg": "^4.1.0",
     "prettier": "^2.1.1",
     "typescript": "^4.0.3",
-    "webpack": "^5.0.0"
+    "webpack": "^5.1.3"
   },
   "dependencies": {
     "blueimp-gallery": "^3.3.0",
