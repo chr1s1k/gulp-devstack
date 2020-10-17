@@ -1,5 +1,6 @@
 import packageJson from './package.json'
 
+import path from 'path'
 import gulp, { series, parallel, watch as watchFor } from 'gulp'
 import webserver from 'gulp-webserver'
 import sass from 'gulp-sass'
@@ -11,9 +12,7 @@ import fancylog from 'fancy-log'
 import uglify from 'gulp-uglify-es'
 import include from 'gulp-include'
 import del from 'del'
-import browserify from 'browserify'
-import source from 'vinyl-source-stream'
-import buffer from 'vinyl-buffer'
+import webpack from 'webpack'
 import handlebars from 'gulp-compile-handlebars'
 import rename from 'gulp-rename'
 import imagemin from 'gulp-imagemin'
@@ -22,7 +21,6 @@ import eslint from 'gulp-eslint'
 import gulpif from 'gulp-if'
 import prettify from 'gulp-prettify'
 import w3cjs from 'gulp-w3cjs'
-import tsify from 'tsify'
 import zip from 'gulp-zip'
 import bump from 'gulp-bump'
 import autoprefixer from 'gulp-autoprefixer'
@@ -127,32 +125,67 @@ function styles() {
   )
 }
 
-// https://thecodeboss.dev/2016/01/building-es6-javascript-for-the-browser-with-gulp-babel-and-more/
-// https://www.sitepoint.com/transpiling-es6-modules-to-amd-commonjs-using-babel-gulp/
-function bundlejs() {
-  return browserify({
-    entries: './src/scripts/main.ts',
-    debug: !isProduction,
+function bundlejs(done) {
+  const config = {
+    mode: isProduction ? 'production' : 'development',
+    devtool: isProduction ? false : 'source-map',
+    entry: {
+      main: './src/scripts/main.ts',
+    },
+    output: {
+      path: path.resolve(__dirname, './dist/js'),
+      filename: isProduction ? '[name].min.js' : '[name].js',
+    },
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(j|t)sx?$/,
+          loader: 'awesome-typescript-loader',
+          exclude: [/node_modules/, /dist/],
+        },
+      ],
+    },
+    plugins: [
+      new webpack.ProgressPlugin(),
+      {
+        apply: compiler => {
+          compiler.hooks.afterEmit.tap('AfterEmitPlugin', compilation => {
+            server.reload()
+          })
+        },
+      },
+    ],
+  }
+
+  webpack(config, (error, stats) => {
+    const jsonStats = stats.toJson()
+    const errors = jsonStats.errors
+    const warnings = jsonStats.warnings
+    const statsConfig = {
+      assets: true,
+      modules: false,
+      colors: true,
+      timings: true,
+    }
+
+    if (error) {
+      fancylog(colors.bold.red(error))
+      beeper()
+    } else if (errors.length) {
+      fancylog(colors.bold.red(errors.toString()))
+      beeper()
+    } else if (warnings.length) {
+      fancylog(colors.bold.redBright(warnings.toString()))
+      beeper()
+    } else {
+      fancylog(stats.toString(statsConfig))
+    }
   })
-    .plugin(tsify)
-    .transform('babelify', {
-      presets: ['@babel/preset-env'],
-      extensions: ['.ts', '.js'],
-    })
-    .bundle()
-    .pipe(source('main.js'))
-    .pipe(buffer())
-    .pipe(gulpif(isProduction, uglify()))
-    .pipe(
-      gulpif(
-        isProduction,
-        rename(path => {
-          path.extname = '.min.js'
-        }),
-      ),
-    )
-    .pipe(gulp.dest('./dist/js'))
-    .pipe(server.stream({ stream: true }))
+
+  done()
 }
 
 function images() {

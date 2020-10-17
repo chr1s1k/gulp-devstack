@@ -1,6 +1,6 @@
 {
   "name": "gulp-devstack",
-  "version": "2.0.1",
+  "version": "2.1.1",
   "author": {
     "name": "Radek Sukup",
     "url": "https://radeksukup.com",
@@ -25,10 +25,10 @@
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
     "ansi-colors": "^4.1.1",
+    "awesome-typescript-loader": "^5.2.1",
     "babelify": "^10.0.0",
     "beeper": "^2.0.0",
     "browser-sync": "^2.26.7",
-    "browserify": "^17.0.0",
     "del": "^6.0.0",
     "eslint": "^7.11.0",
     "fancy-log": "^1.3.3",
@@ -53,10 +53,8 @@
     "husky": "^4.3.0",
     "postcss-inline-svg": "^4.1.0",
     "prettier": "^2.1.1",
-    "tsify": "^5.0.2",
-    "typescript": "^4.0.2",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0"
+    "typescript": "^4.0.3",
+    "webpack": "^5.1.3"
   },
   "dependencies": {
     "blueimp-gallery": "^3.3.0",
