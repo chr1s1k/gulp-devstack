@@ -5,7 +5,7 @@ export const Lazyload = (selector: string): void => {
         rootMargin: '200px',
       },
       selector,
-      window.MiniLazyload.IGNORE_NATIVE_LAZYLOAD
+      window.MiniLazyload.IGNORE_NATIVE_LAZYLOAD,
     )
   } else {
     // eslint-disable-next-line no-console

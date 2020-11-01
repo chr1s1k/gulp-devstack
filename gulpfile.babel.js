@@ -178,7 +178,7 @@ function bundlejs(done) {
       fancylog(colors.bold.red(errors.toString()))
       beeper()
     } else if (warnings.length) {
-      fancylog(colors.bold.redBright(warnings.toString()))
+      fancylog(colors.bold.redBright(JSON.stringify(warnings)))
       beeper()
     } else {
       fancylog(stats.toString(statsConfig))

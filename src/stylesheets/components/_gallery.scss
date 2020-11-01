@@ -46,15 +46,17 @@
   }
   > .next,
   > .prev {
-    font-size: 30px;
+    width: auto;
+    height: auto;
+    padding: map-get($spacers, 2) map-get($spacers, 3);
     border: 0;
     background: none;
   }
   > .prev {
-    left: 15px;
+    left: 0;
   }
   > .next {
-    right: 15px;
+    right: 0;
   }
   > .title {
     display: block;

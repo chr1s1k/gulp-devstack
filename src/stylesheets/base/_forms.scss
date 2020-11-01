@@ -1,20 +1,19 @@
 label {
-	font-weight: normal;
+  font-weight: normal;
 }
 
 textarea {
-	resize: vertical;
-	min-height: $textarea-min-height;
+  resize: vertical;
+  min-height: $textarea-min-height !important;
 }
 
 select,
 option {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .form-control {
-	-webkit-appearance: none; // disable shadows on iOS
-	&[readonly] {
-		cursor: text;
-	}
+  &[readonly] {
+    cursor: text;
+  }
 }

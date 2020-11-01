@@ -1,26 +1,26 @@
 @mixin font-face($name, $file, $weight, $style, $path: $custom-font-path) {
- @font-face {
-	 font-family: "#{$name}";
-	 src: url('#{$path}#{$file}.woff') format('woff');
-	 font-weight: $weight;
-	 font-style: $style;
-	 font-display: swap;
- }
+  @font-face {
+    font-family: '#{$name}';
+    src: url('#{$path}#{$file}.woff2') format('woff2');
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
 }
 
 @mixin ir() {
-	display: inline-block;
-	background-color: transparent;
-	border: 0;
-	overflow: hidden;
-	&:before {
-		content: "";
-		display: block;
-		width: 0;
-		height: 150%;
-	}
+  display: inline-block;
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  &:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 150%;
+  }
 }
 
 @mixin transition($property, $duration: $transition-duration, $easing: linear) {
-	transition: $property $transition-duration $easing;
+  transition: $property $transition-duration $easing;
 }

@@ -1,0 +1,16 @@
+.btn {
+  &-skip-link {
+    position: fixed;
+    top: $spacer;
+    left: $spacer;
+    z-index: $navbar-mobile-zindex + 2;
+    opacity: 0;
+    transform: translateY(calc(-100% - #{$spacer}));
+    transition-property: all;
+
+    &:focus {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
