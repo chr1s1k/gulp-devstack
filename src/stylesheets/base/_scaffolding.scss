@@ -43,3 +43,13 @@ svg {
   fill: currentColor;
   @include transition(fill);
 }
+
+ul,
+ol {
+  line-height: 1.8;
+
+  li::marker {
+    font-weight: $font-weight-bold;
+    color: $primary;
+  }
+}

@@ -34,6 +34,17 @@ $enable-shadows: false;
 $border-width: 1px;
 $enable-responsive-font-sizes: true;
 
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer / 4,
+  2: $spacer / 2,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 2,
+  6: $spacer * 3,
+);
+
 //== Typography
 //
 

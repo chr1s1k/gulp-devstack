@@ -175,7 +175,7 @@ function bundlejs(done) {
       fancylog(colors.bold.red(error))
       beeper()
     } else if (errors.length) {
-      fancylog(colors.bold.red(errors.toString()))
+      fancylog(colors.bold.red(JSON.stringify(errors)))
       beeper()
     } else if (warnings.length) {
       fancylog(colors.bold.redBright(JSON.stringify(warnings)))
@@ -252,7 +252,8 @@ function validateTemplates() {
           if (
             message.indexOf(
               "Bad value “data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'",
-            ) !== -1
+            ) !== -1 ||
+            message.indexOf('Element “img” is missing required attribute “src”') !== -1
           ) {
             return false
           }
