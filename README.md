@@ -11,6 +11,7 @@
 - [blueimp Gallery](https://github.com/blueimp/Gallery)
 - [Lazyloading](https://github.com/VelociraptorCZE/MiniLazyload) of images and iframes
 - Local [webserver](https://github.com/schickling/gulp-webserver) with [Browsersync](https://browsersync.io) support
+- Bundled using [Gulp](https://gulpjs.com/) & [Webpack](https://webpack.js.org/)
 
 ## Setup
 

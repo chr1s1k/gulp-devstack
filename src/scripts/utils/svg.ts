@@ -2,7 +2,7 @@ export const createSvg = (
   icon: string,
   width: number,
   height: number,
-  className = ''
+  className = '',
 ): SVGSVGElement => {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
 
