@@ -51,12 +51,12 @@
 @import "blueimp-gallery/css/blueimp-gallery"; // pure CSS
 
 // Custom base
-@import "base/scaffolding";
+@import "base/base";
 @import "base/typography";
 @import "base/forms";
-@import "base/button";
 
 // Custom components
+@import "components/button";
 @import "components/gallery";
 @import "components/nav";
 @import "components/hamburger";
