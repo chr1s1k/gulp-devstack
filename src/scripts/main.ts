@@ -1,10 +1,12 @@
 import { init, initMultiple } from './init'
-import { Document, Clickable, Gallery, Lazyload, Navbar } from './components'
+import { Document, Clickable, Gallery, Lazyload, Navbar, LazyloadBg } from './components'
 
 const app = {
   runOnce() {
     init(Document, document.documentElement)
     init(Navbar, document.getElementById('nav'))
+
+    new LazyloadBg('.js-lazyload-bg')
   },
   run(container: HTMLElement | Document) {
     initMultiple(Clickable, container.querySelectorAll('.js-clickable'))

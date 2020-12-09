@@ -6,15 +6,6 @@
   }
 }
 
-.js-lazyload {
-  opacity: 0;
-  @include transition(opacity);
-
-  &.loaded {
-    opacity: 1;
-  }
-}
-
 .v-center,
 .v-center-large {
   display: inline-flex;
