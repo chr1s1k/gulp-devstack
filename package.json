@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "blueimp-gallery": "^3.3.0",
-    "bootstrap": "^5.0.0-alpha3",
+    "bootstrap": "^5.0.0-beta1",
     "core-js": "3.8.0",
     "focus-trap": "^6.2.1",
     "hamburgers": "^1.1.3",
