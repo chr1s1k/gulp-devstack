@@ -1,9 +1,8 @@
-//= require popper.js/dist/umd/popper.js
+//= require @popperjs/core/dist/umd/popper.js
 
 //= require bootstrap/js/dist/dom/data.js
 //= require bootstrap/js/dist/dom/event-handler.js
 //= require bootstrap/js/dist/dom/manipulator.js
-//= require bootstrap/js/dist/dom/polyfill.js
 //= require bootstrap/js/dist/dom/selector-engine.js
 
 //= require bootstrap/js/dist/alert.js
