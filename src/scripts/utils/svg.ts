@@ -4,6 +4,7 @@ export const createSvg = (
   height: number,
   className = '',
 ): SVGSVGElement => {
+  const spriteUrl = document.body.dataset.sprite
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
 
   svg.classList && svg.classList.add('icon')
@@ -13,7 +14,7 @@ export const createSvg = (
   svg.setAttribute('aria-hidden', 'true')
 
   const useEl = document.createElementNS('http://www.w3.org/2000/svg', 'use')
-  useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#${icon}`)
+  useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `${spriteUrl}#${icon}`)
 
   svg.appendChild(useEl)
 
