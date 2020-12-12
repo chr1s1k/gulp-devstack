@@ -2,7 +2,6 @@ import packageJson from './package.json'
 
 import path from 'path'
 import gulp, { series, parallel, watch as watchFor } from 'gulp'
-import webserver from 'gulp-webserver'
 import sass from 'gulp-sass'
 import browserSync from 'browser-sync'
 import plumber from 'gulp-plumber'
@@ -26,6 +25,7 @@ import bump from 'gulp-bump'
 import autoprefixer from 'gulp-autoprefixer'
 import postcss from 'gulp-postcss'
 import inlineSVG from 'postcss-inline-svg'
+import apiMocker from 'connect-api-mocker'
 
 const errorHandler = err => {
   beeper() // terminal beep
@@ -35,6 +35,7 @@ const errorHandler = err => {
 }
 
 const server = browserSync.create()
+const mockServer = apiMocker('/api', './src/mocks/api')
 
 let isProduction = false
 
@@ -315,17 +316,16 @@ function watch() {
   watchFor('./src/fonts/**/*', fonts)
 }
 
-function staticServer() {
-  return gulp.src('./dist').pipe(webserver())
-}
-
 function serve() {
   return server.init({
-    proxy: 'localhost:8000',
+    server: {
+      baseDir: './dist',
+      middleware: [mockServer],
+    },
   })
 }
 
-const defaultTask = parallel(staticServer, serve, watch)
+const defaultTask = parallel(serve, watch)
 
 const scripts = series(lint, vendorjs, bundlejs)
 
