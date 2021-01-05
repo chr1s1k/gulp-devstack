@@ -10,7 +10,7 @@
 - [ESLint](https://eslint.org/)
 - [blueimp Gallery](https://github.com/blueimp/Gallery)
 - [Lazyloading](https://github.com/VelociraptorCZE/MiniLazyload) of images and iframes
-- Local [webserver](https://github.com/schickling/gulp-webserver) with [Browsersync](https://browsersync.io) support
+- Local webserver with [Browsersync](https://browsersync.io) and [mocked API](https://github.com/muratcorlu/connect-api-mocker) support
 - Bundled using [Gulp](https://gulpjs.com/) & [Webpack](https://webpack.js.org/)
 
 ## Setup
@@ -19,7 +19,7 @@ Install [Yarn](https://yarnpkg.com/lang/en/).
 
 ## Installation
 
-```yarn install```
+`yarn install`
 
 ## Usage
 
@@ -27,20 +27,20 @@ Install [Yarn](https://yarnpkg.com/lang/en/).
 
 To compile assets, start development server with watch task run:
 
-```gulp init``` or ```yarn start```
+`gulp init` or `yarn start`
 
 To start development server with watch task run:
 
-```gulp```
+`gulp`
 
 ### Production build
 
 To compile & minify all assets ready for production deployment run:
 
-```gulp build``` or ```yarn build```
+`gulp build` or `yarn build`
 
 ### Production package
 
 To create a ZIP package from compiled & minified assets run:
 
-```gulp zip``` or ```gulp package```
+`gulp zip` or `gulp package`

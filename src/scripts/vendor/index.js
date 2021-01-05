@@ -21,4 +21,4 @@
 
 //= require blueimp-gallery/js/blueimp-helper.js
 //= require blueimp-gallery/js/blueimp-gallery.js
-//= require blueimp-gallery/js/blueimp-gallery-fullscreen.js
+// require blueimp-gallery/js/blueimp-gallery-fullscreen.js

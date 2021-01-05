@@ -11,11 +11,11 @@
   "scripts": {
     "start": "gulp init",
     "build": "gulp build",
-    "precommit": "gulp eslint"
+    "prepush": "gulp eslint"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn precommit"
+      "pre-push": "yarn prepush"
     }
   },
   "devDependencies": {
