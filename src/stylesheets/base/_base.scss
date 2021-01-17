@@ -3,11 +3,6 @@
   background: $selection-bg-color;
   text-shadow: none;
 }
-::-moz-selection {
-  color: $selection-color;
-  background: $selection-bg-color;
-  text-shadow: none;
-}
 
 html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
