@@ -1,19 +1,19 @@
 import { FocusTrap } from '../utils'
 
 const excludeLinks = (links: HTMLAnchorElement[]): void => {
-  links.forEach(link => {
+  links.forEach((link) => {
     link.setAttribute('tabindex', '-1')
   })
 }
 
 const includeLinks = (links: HTMLAnchorElement[]): void => {
-  links.forEach(link => {
+  links.forEach((link) => {
     link.removeAttribute('tabindex')
   })
 }
 
 const matchMediaHandler = (media: MediaQueryList): Promise<boolean> =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     if (media.matches) {
       resolve(true)
     } else {
@@ -89,7 +89,7 @@ export const Navbar = (navbar: HTMLElement): void => {
   // if custom css property was provided => check for breakpoint changes
   if (matchMedia) {
     // run media check once when the page is loaded
-    matchMediaHandler(matchMedia).then(matched => {
+    matchMediaHandler(matchMedia).then((matched) => {
       if (matched) {
         excludeLinks(navbarLinks)
       }
@@ -99,7 +99,7 @@ export const Navbar = (navbar: HTMLElement): void => {
     // safari doesn't support addEventListener method
     if (matchMedia.addEventListener !== undefined) {
       matchMedia.addEventListener('change', () => {
-        matchMediaHandler(matchMedia).then(matched => {
+        matchMediaHandler(matchMedia).then((matched) => {
           if (matched && !body.classList.contains(classes.NAVBAR_VISIBLE)) {
             excludeLinks(navbarLinks)
           } else {
@@ -108,7 +108,7 @@ export const Navbar = (navbar: HTMLElement): void => {
         })
       })
     } else {
-      matchMedia.addListener(event => {
+      matchMedia.addListener((event) => {
         if (event.matches && !body.classList.contains(classes.NAVBAR_VISIBLE)) {
           excludeLinks(navbarLinks)
         } else {

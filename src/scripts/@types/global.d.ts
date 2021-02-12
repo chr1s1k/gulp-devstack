@@ -1,5 +1,8 @@
 interface IBlueimp {
-  Gallery: (list: NodeList | HTMLCollection, options?: Record<string, unknown>) => void
+  Gallery: (
+    list: NodeList | HTMLCollection | Record<string, any>[],
+    options?: Record<string, unknown>,
+  ) => void
 }
 
 interface IMiniLazyload {

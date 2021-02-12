@@ -16,7 +16,7 @@ export function initMultiple(
   if (listOfElements.length) {
     const elements = Array.from(listOfElements)
 
-    elements.forEach(el => {
+    elements.forEach((el) => {
       fn(el as HTMLElement, ...args)
     })
   }

@@ -24,7 +24,7 @@ export class LazyloadBg {
     this.queryElements()
     this.createObserver()
 
-    this.elements.forEach(element => {
+    this.elements.forEach((element) => {
       if (!element.id) {
         element.setAttribute('id', `lazybg_${generateId()}`)
       }
@@ -38,7 +38,7 @@ export class LazyloadBg {
 
   private createObserver(): void {
     this.observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.intersectionRatio > 0) {
           // as soon as the image gets into the viewport => stop observing it
           observer.unobserve(entry.target)
