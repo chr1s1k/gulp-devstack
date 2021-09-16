@@ -46,6 +46,9 @@
 // Custom mixins
 @import "utils/mixins";
 
+// Custom shared
+@import "utils/shared";
+
 // Libs
 @import "hamburgers/_sass/hamburgers/hamburgers";
 @import "blueimp-gallery/css/blueimp-gallery"; // pure CSS

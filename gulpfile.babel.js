@@ -27,8 +27,8 @@ import postcss from 'gulp-postcss'
 import inlineSVG from 'postcss-inline-svg'
 import apiMocker from 'connect-api-mocker'
 
-const errorHandler = err => {
-  beeper() // terminal beep
+const errorHandler = async (err) => {
+  await beeper() // terminal beep
   fancylog(
     colors.bold.red(err.message), // log a colored message
   )
@@ -61,7 +61,7 @@ function templates() {
           ignorePartials: true,
           batch: ['./src/templates/partials'], // where to locate partial templates
           helpers: {
-            parse: options => {
+            parse: (options) => {
               return options.fn(JSON.parse(options.hash.json))
             },
           },
@@ -69,7 +69,7 @@ function templates() {
       ),
     )
     .pipe(
-      rename(path => {
+      rename((path) => {
         path.extname = '.html'
       }),
     )
@@ -115,7 +115,7 @@ function styles() {
       .pipe(
         gulpif(
           isProduction,
-          rename(path => {
+          rename((path) => {
             path.extname = '.min.css'
           }),
         ),
@@ -152,8 +152,8 @@ function bundlejs(done) {
     plugins: [
       new webpack.ProgressPlugin(),
       {
-        apply: compiler => {
-          compiler.hooks.afterEmit.tap('AfterEmitPlugin', compilation => {
+        apply: (compiler) => {
+          compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
             server.reload()
           })
         },
@@ -234,7 +234,7 @@ function lint() {
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(
-      eslint.result(result => {
+      eslint.result((result) => {
         if (result.errorCount) {
           beeper() // if at least one eslint error has found => just beep the terminal
         }
@@ -282,7 +282,7 @@ function vendorjs() {
       }),
     )
     .pipe(
-      rename(path => {
+      rename((path) => {
         path.basename = 'vendor'
       }),
     )
@@ -290,7 +290,7 @@ function vendorjs() {
     .pipe(
       gulpif(
         isProduction,
-        rename(path => {
+        rename((path) => {
           path.extname = '.min.js'
         }),
       ),
