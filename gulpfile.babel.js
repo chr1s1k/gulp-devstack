@@ -2,7 +2,8 @@ import packageJson from './package.json'
 
 import path from 'path'
 import gulp, { series, parallel, watch as watchFor } from 'gulp'
-import sass from 'gulp-sass'
+import dartSass from 'sass'
+import gulpSass from 'gulp-sass'
 import browserSync from 'browser-sync'
 import plumber from 'gulp-plumber'
 import beeper from 'beeper'
@@ -26,6 +27,8 @@ import autoprefixer from 'gulp-autoprefixer'
 import postcss from 'gulp-postcss'
 import inlineSVG from 'postcss-inline-svg'
 import apiMocker from 'connect-api-mocker'
+
+const sass = gulpSass(dartSass)
 
 const errorHandler = async (err) => {
   await beeper() // terminal beep
@@ -103,6 +106,7 @@ function styles() {
           precision: 8,
           outputStyle: isProduction ? 'compressed' : 'expanded',
           includePaths: ['./node_modules/'],
+          quietDeps: true,
         }).on('error', sass.logError),
       )
       .pipe(

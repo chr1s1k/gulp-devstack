@@ -72,8 +72,8 @@
         content: '';
         display: block;
         position: absolute;
-        top: calc(50% - #{$size / 2});
-        left: calc(50% - #{$size / 2});
+        top: calc(50% - #{math.div($size, 2)});
+        left: calc(50% - #{math.div($size, 2)});
         border: 3px solid rgba($primary, 0.3);
         border-top-color: $secondary;
         border-radius: 50%;
