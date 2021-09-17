@@ -11,6 +11,7 @@
 - [blueimp Gallery](https://github.com/blueimp/Gallery)
 - [Lazyloading](https://github.com/VelociraptorCZE/MiniLazyload) of images and iframes
 - Local webserver with [Browsersync](https://browsersync.io) and [mocked API](https://github.com/muratcorlu/connect-api-mocker) support
+- Run linters against staged git files using [lint-staged](https://github.com/okonet/lint-staged) & [Husky](https://typicode.github.io/husky) hooks
 - Bundled using [Gulp](https://gulpjs.com/) & [Webpack](https://webpack.js.org/)
 
 ## Setup
