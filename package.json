@@ -1,6 +1,6 @@
 {
   "name": "gulp-devstack",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "author": {
     "name": "Radek Sukup",
     "url": "https://radeksukup.com",
@@ -22,15 +22,15 @@
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
     "@babel/register": "^7.12.1",
-    "@typescript-eslint/eslint-plugin": "^4.8.2",
-    "@typescript-eslint/parser": "^4.8.2",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
     "ansi-colors": "^4.1.1",
     "awesome-typescript-loader": "^5.2.1",
     "beeper": "^2.0.0",
     "browser-sync": "^2.26.7",
     "connect-api-mocker": "^1.9.0",
     "del": "^6.0.0",
-    "eslint": "^7.14.0",
+    "eslint": "^7.32.0",
     "fancy-log": "^1.3.3",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
@@ -48,20 +48,20 @@
     "gulp-svg-sprite": "^1.5.0",
     "gulp-uglify-es": "^3.0.0",
     "gulp-w3cjs": "^1.3.2",
-    "gulp-zip": "^5.0.1",
+    "gulp-zip": "^5.1.0",
     "husky": "^4.3.0",
     "postcss": "^8.1.4",
     "postcss-inline-svg": "^5.0.0",
-    "prettier": "^2.1.1",
-    "typescript": "^4.1.2",
-    "webpack": "^5.8.0"
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.3",
+    "webpack": "^5.53.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.5.4",
     "blueimp-gallery": "^3.3.0",
     "bootstrap": "^5.1.1",
     "core-js": "3.8.0",
-    "focus-trap": "^6.2.1",
+    "focus-trap": "^6.6.1",
     "hamburgers": "^1.1.3",
     "minilazyload": "^2.3.4"
   }
