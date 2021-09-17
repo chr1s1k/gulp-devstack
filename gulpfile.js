@@ -1,7 +1,12 @@
-import packageJson from './package.json'
+import { fileURLToPath } from 'url'
+import path, { dirname } from 'path'
 
-import path from 'path'
-import gulp, { series, parallel, watch as watchFor } from 'gulp'
+import { readFile } from 'fs/promises'
+const packageJson = JSON.parse(await readFile(new URL('./package.json', import.meta.url)))
+
+import gulpPkg from 'gulp'
+const { src, series, parallel, dest, watch: watchFor } = gulpPkg
+
 import dartSass from 'sass'
 import gulpSass from 'gulp-sass'
 import browserSync from 'browser-sync'
@@ -9,7 +14,7 @@ import plumber from 'gulp-plumber'
 import beeper from 'beeper'
 import colors from 'ansi-colors'
 import fancylog from 'fancy-log'
-import uglify from 'gulp-uglify-es'
+import gulpUglify from 'gulp-uglify-es'
 import include from 'gulp-include'
 import del from 'del'
 import webpack from 'webpack'
@@ -28,10 +33,15 @@ import postcss from 'gulp-postcss'
 import inlineSVG from 'postcss-inline-svg'
 import apiMocker from 'connect-api-mocker'
 
-const sass = gulpSass(dartSass)
+// https://stackoverflow.com/questions/8817423/why-is-dirname-not-defined-in-node-repl#answer-62892482
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
-const errorHandler = async (err) => {
-  await beeper() // terminal beep
+const sass = gulpSass(dartSass)
+const uglify = gulpUglify.default
+
+const errorHandler = (err) => {
+  beeper() // terminal beep
   fancylog(
     colors.bold.red(err.message), // log a colored message
   )
@@ -42,18 +52,15 @@ const mockServer = apiMocker('/api', './src/mocks/api')
 
 let isProduction = false
 
-function setProductionMode(done) {
+const setProductionMode = (done) => {
   isProduction = true
   done()
 }
 
-function clean() {
-  return del('./dist')
-}
+const clean = () => del('./dist')
 
-function templates() {
-  return gulp
-    .src('./src/templates/*.hbs')
+const templates = () => {
+  return src('./src/templates/*.hbs')
     .pipe(
       handlebars(
         {
@@ -88,14 +95,13 @@ function templates() {
         }),
       ),
     )
-    .pipe(gulp.dest('./dist'))
+    .pipe(dest('./dist'))
     .pipe(server.stream({ reload: true }))
 }
 
-function styles() {
+const styles = () => {
   return (
-    gulp
-      .src('./src/stylesheets/*.scss', { sourcemaps: true })
+    src('./src/stylesheets/*.scss', { sourcemaps: true })
       .pipe(
         plumber({
           errorHandler,
@@ -125,12 +131,12 @@ function styles() {
         ),
       )
       // write an external sourcemaps, but only in development mode
-      .pipe(gulp.dest('./dist/css', { sourcemaps: !isProduction && '.' }))
+      .pipe(dest('./dist/css', { sourcemaps: !isProduction && '.' }))
       .pipe(server.stream())
   )
 }
 
-function bundlejs(done) {
+const bundlejs = (done) => {
   const config = {
     mode: isProduction ? 'production' : 'development',
     devtool: isProduction ? false : 'source-map',
@@ -193,32 +199,32 @@ function bundlejs(done) {
   done()
 }
 
-function images() {
-  return gulp
-    .src(['./src/images/**/*', '!./src/images/sprite/**', '!./src/images/favicon/**'])
+const images = () => {
+  return src(['./src/images/**/*', '!./src/images/sprite/**', '!./src/images/favicon/**'])
     .pipe(imagemin())
-    .pipe(gulp.dest('./dist/images'))
+    .pipe(dest('./dist/images'))
 }
 
-function faviconImages() {
-  return gulp
-    .src(['./src/images/favicon/*.png', './src/images/favicon/*.svg', './src/images/favicon/*.ico'])
-    .pipe(gulp.dest('./dist/images'))
+const faviconImages = () => {
+  return src([
+    './src/images/favicon/*.png',
+    './src/images/favicon/*.svg',
+    './src/images/favicon/*.ico',
+  ]).pipe(dest('./dist/images'))
 }
 
-function faviconConfig() {
-  return gulp
-    .src(['./src/images/favicon/*.xml', './src/images/favicon/*.webmanifest'])
-    .pipe(gulp.dest('./dist'))
+const faviconConfig = () => {
+  return src(['./src/images/favicon/*.xml', './src/images/favicon/*.webmanifest']).pipe(
+    dest('./dist'),
+  )
 }
 
-function fonts() {
-  return gulp.src('./src/fonts/**/*').pipe(gulp.dest('./dist/fonts'))
+const fonts = () => {
+  return src('./src/fonts/**/*').pipe(dest('./dist/fonts'))
 }
 
-function svg() {
-  return gulp
-    .src('./src/images/sprite/*.svg')
+const svg = () => {
+  return src('./src/images/sprite/*.svg')
     .pipe(
       svgsprite({
         mode: {
@@ -229,12 +235,11 @@ function svg() {
         },
       }),
     )
-    .pipe(gulp.dest('./dist/images'))
+    .pipe(dest('./dist/images'))
 }
 
-function lint() {
-  return gulp
-    .src(['./src/scripts/**/*.ts', '!./src/scripts/vendor/**/*'])
+const lint = () => {
+  return src(['./src/scripts/**/*.ts', '!./src/scripts/vendor/**/*'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(
@@ -247,9 +252,8 @@ function lint() {
     .pipe(eslint.failAfterError())
 }
 
-function validateTemplates() {
-  return gulp
-    .src('./dist/*.html')
+const validateTemplates = () => {
+  return src('./dist/*.html')
     .pipe(
       w3cjs({
         verifyMessage: (type, message) => {
@@ -272,9 +276,8 @@ function validateTemplates() {
     .pipe(w3cjs.reporter())
 }
 
-function vendorjs() {
-  return gulp
-    .src('./src/scripts/vendor/index.js')
+const vendorjs = () => {
+  return src('./src/scripts/vendor/index.js')
     .pipe(
       plumber({
         errorHandler,
@@ -299,20 +302,19 @@ function vendorjs() {
         }),
       ),
     )
-    .pipe(gulp.dest('./dist/js'))
+    .pipe(dest('./dist/js'))
 }
 
-function createZip() {
+const createZip = () => {
   const zipFileName = `${packageJson.name}-${packageJson.version}.zip`
-
-  return gulp.src('./dist/**/*').pipe(zip(zipFileName)).pipe(gulp.dest('./dist'))
+  return src('./dist/**/*').pipe(zip(zipFileName)).pipe(dest('./dist'))
 }
 
-function increasePackageVersion() {
-  return gulp.src('./package.json').pipe(gulpif(isProduction, bump())).pipe(gulp.dest('./'))
+const increasePackageVersion = () => {
+  return src('./package.json').pipe(gulpif(isProduction, bump())).pipe(dest('./'))
 }
 
-function watch() {
+const watch = () => {
   watchFor('./src/stylesheets/**/*.scss', styles)
   watchFor('./src/templates/**/*.hbs', templates)
   watchFor(['./src/scripts/**/*.ts', './src/scripts/vendor/*.js'], scripts)
@@ -321,7 +323,7 @@ function watch() {
   watchFor('./src/fonts/**/*', fonts)
 }
 
-function serve() {
+const serve = () => {
   return server.init({
     server: {
       baseDir: './dist',
@@ -329,8 +331,6 @@ function serve() {
     },
   })
 }
-
-const defaultTask = parallel(serve, watch)
 
 const scripts = series(lint, vendorjs, bundlejs)
 
@@ -344,24 +344,24 @@ const build = series(
   validateTemplates,
 )
 
-exports.default = defaultTask
-exports.templates = templates
-exports.clean = clean
-exports.styles = styles
-exports.images = images
-exports.favicons = favicons
-exports.fonts = fonts
-exports.scripts = scripts
-exports.svg = svg
-exports.eslint = lint
-exports.build = build
-exports.validateTemplates = validateTemplates
-exports.bundlejs = bundlejs
-exports.package = createZip
-exports.zip = createZip
+export {
+  templates,
+  clean,
+  styles,
+  images,
+  favicons,
+  fonts,
+  scripts,
+  svg,
+  eslint as lint,
+  build,
+  validateTemplates,
+  bundlejs,
+  createZip as zip,
+}
 
-exports.init = series(
+export default series(
   clean,
   parallel(templates, styles, scripts, images, favicons, fonts, svg),
-  defaultTask,
+  parallel(serve, watch),
 )

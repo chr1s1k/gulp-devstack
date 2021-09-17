@@ -1,16 +1,19 @@
 {
   "name": "gulp-devstack",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "author": {
     "name": "Radek Sukup",
     "url": "https://radeksukup.com",
     "email": "sukup.r@gmail.com"
   },
+  "type": "module",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "gulp init",
+    "start": "gulp",
     "build": "gulp build",
+    "build:package": "yarn build && yarn zip",
+    "zip": "gulp zip",
     "precommit": "lint-staged",
     "prepare": "husky install"
   },
@@ -23,12 +26,11 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
-    "@babel/register": "^7.12.1",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
     "ansi-colors": "^4.1.1",
     "awesome-typescript-loader": "^5.2.1",
-    "beeper": "^2.0.0",
+    "beeper": "^3.0.0",
     "browser-sync": "^2.26.7",
     "connect-api-mocker": "^1.9.0",
     "del": "^6.0.0",
@@ -40,7 +42,7 @@
     "gulp-compile-handlebars": "^0.6.1",
     "gulp-eslint": "^6.0.0",
     "gulp-if": "^3.0.0",
-    "gulp-imagemin": "^7.1.0",
+    "gulp-imagemin": "^8.0.0",
     "gulp-include": "^2.4.1",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^9.0.0",
