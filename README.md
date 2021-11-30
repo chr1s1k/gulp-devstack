@@ -41,3 +41,15 @@ To compile & minify all assets ready for production deployment run:
 To create a ZIP package from compiled & minified assets run:
 
 `gulp zip` or `yarn zip`
+
+## Tips
+
+To make your website a bit dynamic without using jQuery or React, I strongly recommend to use [Alpine.js framework](https://alpinejs.dev/).
+
+```cmd
+yarn add alpinejs
+```
+
+## Known issues
+
+If husky `precommit` hook doesn't work, try to run `yarn husky add .husky/pre-commit "yarn precommit"`.

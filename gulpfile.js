@@ -305,6 +305,10 @@ const vendorjs = () => {
     .pipe(dest('./dist/js'))
 }
 
+const copyRootFiles = () => {
+  return src(['./src/root/**/*']).pipe(dest('./dist'))
+}
+
 const createZip = () => {
   const zipFileName = `${packageJson.name}-${packageJson.version}.zip`
   return src('./dist/**/*').pipe(zip(zipFileName)).pipe(dest('./dist'))
@@ -339,7 +343,7 @@ const favicons = parallel(faviconImages, faviconConfig)
 const build = series(
   setProductionMode,
   clean,
-  parallel(templates, styles, scripts, images, favicons, fonts, svg),
+  parallel(templates, styles, scripts, images, favicons, fonts, svg, copyRootFiles),
   increasePackageVersion,
   validateTemplates,
 )
@@ -362,6 +366,6 @@ export {
 
 export default series(
   clean,
-  parallel(templates, styles, scripts, images, favicons, fonts, svg),
+  parallel(templates, styles, scripts, images, favicons, fonts, svg, copyRootFiles),
   parallel(serve, watch),
 )

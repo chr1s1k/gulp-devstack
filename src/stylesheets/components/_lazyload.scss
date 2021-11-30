@@ -33,7 +33,7 @@
   &::before {
     z-index: -1;
     opacity: 1;
-    transition: opacity 0.3s ease-in;
+    @include transition(opacity, 0.3s);
   }
 
   // representing a layer with highres image

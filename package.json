@@ -1,6 +1,6 @@
 {
   "name": "gulp-devstack",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "author": {
     "name": "Radek Sukup",
     "url": "https://radeksukup.com",
@@ -18,8 +18,11 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{ts,tsx,scss}": [
-      "eslint --max-warnings 0",
+    "*.{ts,tsx}": [
+      "eslint",
+      "prettier --write"
+    ],
+    "*.scss": [
       "prettier --write"
     ]
   },
@@ -35,6 +38,7 @@
     "connect-api-mocker": "^1.10.0",
     "del": "^6.0.0",
     "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
     "fancy-log": "^1.3.3",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",

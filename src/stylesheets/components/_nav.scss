@@ -18,7 +18,7 @@
     right: 0;
     z-index: $navbar-mobile-zindex;
     transform: translateX(#{$navbar-mobile-width});
-    transition: transform 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    @include transition(transform, 0.3s);
 
     .navbar-visible & {
       transform: translateX(0);

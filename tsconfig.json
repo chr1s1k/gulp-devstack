@@ -1,8 +1,9 @@
 {
   "files": ["src/scripts/main.ts"],
   "compilerOptions": {
+    "importHelpers": true,
     "target": "es6",
-    "lib": ["es5", "esnext", "dom"],
+    "lib": ["es5", "esnext", "dom", "DOM.Iterable"],
     "noImplicitAny": true,
     "allowJs": true,
     "skipLibCheck": true,
