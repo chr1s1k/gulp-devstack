@@ -14,8 +14,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: $font-family-brand, sans-serif;
 
-  @include media-breakpoint-down($navbar-mobile-breakpoint) {
-    &.navbar-visible {
+  @include media-breakpoint-down($navbar-desktop-breakpoint) {
+    &.navbar-open {
       overflow: hidden;
     }
   }

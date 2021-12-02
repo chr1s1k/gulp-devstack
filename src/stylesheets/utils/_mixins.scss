@@ -8,27 +8,15 @@
   }
 }
 
-@mixin ir() {
-  display: inline-block;
-  background-color: transparent;
-  border: 0;
-  overflow: hidden;
-  &:before {
-    content: '';
-    display: block;
-    width: 0;
-    height: 150%;
-  }
-}
-
 // Set transition for a single or multiple CSS properties.
 // @param {String} $properties - one or multiple properties separated by a comma
-// @param {Number} $duration [$duration-shorter] - transition duration
+// @param {Number} $duration [$transition-duration-base] - transition duration
 // @param {Any} $timing-function [$transition-timing-function] - transition timing function
 // @example @include transition(color);
+// @example @include transition('color, border');
 @mixin transition(
   $properties,
-  $duration: $transition-duration,
+  $duration: $transition-duration-base,
   $timing-function: $transition-timing-function
 ) {
   transition-duration: $duration;

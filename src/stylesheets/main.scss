@@ -3,8 +3,8 @@
 // Custom functions
 @import 'functions/rem';
 
-// Custom variables overrides
-@import 'variables-overrides';
+// Custom variables
+@import 'variables';
 
 // Bootstrap
 @import 'bootstrap/scss/functions';
@@ -42,9 +42,6 @@
 @import 'bootstrap/scss/helpers';
 @import 'bootstrap/scss/utilities/api';
 
-// Custom variables
-@import 'variables';
-
 // Custom mixins
 @import 'utils/mixins';
 
@@ -63,7 +60,7 @@
 // Custom components
 @import 'components/button';
 @import 'components/gallery';
-@import 'components/nav';
+@import 'components/navbar';
 @import 'components/hamburger';
 @import 'components/lazyload';
 
