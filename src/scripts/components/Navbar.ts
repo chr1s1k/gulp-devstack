@@ -10,7 +10,8 @@ export const Navbar = (navbar: HTMLElement): void => {
     NAVBAR_BACKDROP: 'navbar-backdrop',
     NAVBAR_CLOSING: 'navbar-closing',
   }
-  const hamburger = document.querySelector('.js-hamburger')
+  const hamburgerBtn = document.querySelector('.js-hamburger--open')
+  const hamburgerCloseBtn = document.querySelector('.js-hamburger--close')
   const body = document.body
   const pageOverlay = document.createElement('div')
   const showNavbarEvent = new CustomEvent('show.navbar')
@@ -23,7 +24,7 @@ export const Navbar = (navbar: HTMLElement): void => {
   })
   body.appendChild(pageOverlay)
 
-  hamburger?.addEventListener('click', () => {
+  hamburgerBtn?.addEventListener('click', () => {
     if (body.classList.contains(classes.NAVBAR_CLOSING)) {
       return
     }
@@ -37,8 +38,8 @@ export const Navbar = (navbar: HTMLElement): void => {
 
   navbar.addEventListener('show.navbar', () => {
     body.classList.add(classes.NAVBAR_OPEN)
-    hamburger?.classList.add(classes.IS_ACTIVE)
-    hamburger?.setAttribute('aria-expanded', 'true')
+    hamburgerBtn?.classList.add(classes.IS_ACTIVE)
+    hamburgerBtn?.setAttribute('aria-expanded', 'true')
 
     focusTrap.activate()
   })
@@ -46,8 +47,8 @@ export const Navbar = (navbar: HTMLElement): void => {
   navbar.addEventListener('hide.navbar', () => {
     body.classList.add(classes.NAVBAR_CLOSING)
     body.classList.remove(classes.NAVBAR_OPEN)
-    hamburger?.classList.remove(classes.IS_ACTIVE)
-    hamburger?.setAttribute('aria-expanded', 'false')
+    hamburgerBtn?.classList.remove(classes.IS_ACTIVE)
+    hamburgerBtn?.setAttribute('aria-expanded', 'false')
 
     focusTrap.destroy()
   })
@@ -66,5 +67,9 @@ export const Navbar = (navbar: HTMLElement): void => {
         navbar.dispatchEvent(hideNavbarEvent)
       }
     }
+  })
+
+  hamburgerCloseBtn?.addEventListener('click', () => {
+    navbar.dispatchEvent(hideNavbarEvent)
   })
 }

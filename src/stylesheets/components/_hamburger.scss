@@ -3,6 +3,7 @@
   line-height: 0;
   background: #fff;
   overflow: hidden;
+
   @include media-breakpoint-up($navbar-desktop-breakpoint) {
     display: none;
   }
@@ -17,8 +18,8 @@
     }
   }
 
-  @include media-breakpoint-down($navbar-desktop-breakpoint) {
-    position: relative;
-    z-index: $navbar-mobile-zindex + 1;
+  &--close {
+    margin-top: 10px;
+    margin-right: 10px;
   }
 }
