@@ -6,6 +6,7 @@ $enable-rounded: true;
 $enable-shadows: false;
 $border-width: 1px;
 $enable-responsive-font-sizes: true;
+$enable-negative-margins: false;
 
 $spacer: 1rem;
 $spacers: (
@@ -17,23 +18,6 @@ $spacers: (
   5: $spacer * 2,
   6: $spacer * 3,
 );
-
-//==================================================
-//== Typography
-//
-
-$custom-font-path: '../fonts/';
-$font-family-sans-serif: 'Helvetica Neue', Helvetica, Tahoma, Verdana, sans-serif;
-$font-family-brand: 'Great Vibes';
-$font-size-base: rem(16);
-// $h1-font-size:                $font-size-base * 2.5 !default;
-// $h2-font-size:                $font-size-base * 2 !default;
-// $h3-font-size:                $font-size-base * 1.75 !default;
-// $h4-font-size:                $font-size-base * 1.5 !default;
-// $headings-font-family:        inherit !default;
-// $headings-font-weight:        500 !default;
-// $headings-color:              inherit !default;
-// $headings-margin-bottom:      1rem !default;
 
 //==================================================
 //== Colors
@@ -58,11 +42,32 @@ $gray-000: #fafafa;
 $gray-100: #f1f1f1;
 $gray-200: #ebebeb;
 $gray-300: #b0b0b0;
-$gray-400: #7f7f7f;
+$gray-400: #727272;
 $gray-500: #494949;
 $gray-600: #383838;
 $gray-700: #2a2929;
 $gray-800: #181819;
+
+//==================================================
+//== Typography
+//
+
+$custom-font-path: '../fonts/';
+$font-family-sans-serif: 'Helvetica Neue', Helvetica, Tahoma, Verdana, sans-serif;
+$font-family-brand: 'Great Vibes';
+$font-size-base: rem(16);
+$font-size-large: rem(18);
+$font-size-xlarge: rem(20);
+$font-size-small: rem(14);
+$font-size-xsmall: rem(12);
+// $h1-font-size:                $font-size-base * 2.5 !default;
+// $h2-font-size:                $font-size-base * 2 !default;
+// $h3-font-size:                $font-size-base * 1.75 !default;
+// $h4-font-size:                $font-size-base * 1.5 !default;
+// $headings-font-family:        inherit !default;
+// $headings-font-weight:        500 !default;
+// $headings-color:              inherit !default;
+$headings-margin-bottom: $spacer;
 
 //==================================================
 //== Transitions
@@ -96,6 +101,7 @@ $hamburger-hover-opacity: 1;
 $hamburger-layer-color: $primary;
 $hamburger-layer-width: 28px;
 $hamburger-layer-height: 4px;
+$hamburger-bg: $white;
 
 //==================================================
 //== Gallery

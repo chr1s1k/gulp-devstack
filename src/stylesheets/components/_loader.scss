@@ -36,4 +36,9 @@
 
 .loader {
   @extend %loader;
+
+  &--inline {
+    display: inline-flex;
+    position: static;
+  }
 }

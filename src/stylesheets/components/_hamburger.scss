@@ -1,7 +1,7 @@
 .hamburger {
   display: block;
   line-height: 0;
-  background: #fff;
+  background: $hamburger-bg;
   overflow: hidden;
 
   @include media-breakpoint-up($navbar-desktop-breakpoint) {

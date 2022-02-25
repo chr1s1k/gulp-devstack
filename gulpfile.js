@@ -32,6 +32,7 @@ import autoprefixer from 'gulp-autoprefixer'
 import postcss from 'gulp-postcss'
 import inlineSVG from 'postcss-inline-svg'
 import apiMocker from 'connect-api-mocker'
+// import replace from 'gulp-replace'
 
 // https://stackoverflow.com/questions/8817423/why-is-dirname-not-defined-in-node-repl#answer-62892482
 const __filename = fileURLToPath(import.meta.url)
@@ -81,8 +82,19 @@ const templates = () => {
     .pipe(
       rename((path) => {
         path.extname = '.html'
+        // if (isProduction) {
+        //   path.basename = `_${path.basename}`
+        // }
       }),
     )
+    // .pipe(
+    //   gulpif(
+    //     isProduction,
+    //     replace(/href="(.*)\.html"/g, (match, name, offset, string) => {
+    //       return `href="_${name}.html"`
+    //     }),
+    //   ),
+    // )
     .pipe(
       gulpif(
         isProduction,
@@ -186,10 +198,10 @@ const bundlejs = (done) => {
       fancylog(colors.bold.red(error))
       beeper()
     } else if (errors.length) {
-      fancylog(colors.bold.red(JSON.stringify(errors)))
+      fancylog(colors.bold.red(JSON.stringify(errors, null, 4)))
       beeper()
     } else if (warnings.length) {
-      fancylog(colors.bold.redBright(JSON.stringify(warnings)))
+      fancylog(colors.bold.redBright(JSON.stringify(warnings, null, 4)))
       beeper()
     } else {
       fancylog(stats.toString(statsConfig))
@@ -321,7 +333,10 @@ const increasePackageVersion = () => {
 const watch = () => {
   watchFor('./src/stylesheets/**/*.scss', styles)
   watchFor('./src/templates/**/*.hbs', templates)
-  watchFor(['./src/scripts/**/*.ts', './src/scripts/vendor/*.js'], scripts)
+  watchFor(
+    ['./src/scripts/**/*.ts', './src/scripts/**/*.tsx', './src/scripts/vendor/*.js'],
+    scripts,
+  )
   watchFor('./src/images/**/*', images)
   watchFor('./src/images/sprite/**/*', svg)
   watchFor('./src/fonts/**/*', fonts)

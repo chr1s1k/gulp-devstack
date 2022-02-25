@@ -23,3 +23,8 @@
   transition-property: unquote($properties);
   transition-timing-function: $timing-function;
 }
+
+@mixin size($value) {
+  width: $value;
+  height: $value;
+}
